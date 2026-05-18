@@ -975,7 +975,7 @@
   "info": {
     "title": "Pipe Bomb API",
     "description": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "contact": {}
   },
   "tags": [],
@@ -1364,6 +1364,13 @@
               "$ref": "#/components/schemas/TrackArtist"
             }
           },
+          "albums": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Album"
+            }
+          },
           "attributes": {
             "oneOf": [
               {
@@ -1386,6 +1393,7 @@
           "libraryId",
           "title",
           "artists",
+          "albums",
           "attributes",
           "identities"
         ]
