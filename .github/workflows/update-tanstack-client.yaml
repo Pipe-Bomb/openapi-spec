@@ -1,0 +1,31 @@
+name: Update Client Libraries
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  tanstack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          token: ${{ secrets.GH_TOKEN }}
+          repository: pipe-bomb/tanstack-client
+
+      - name: Update parent repo submodule pointer
+        run: |
+          git submodule update --remote openapi
+          git add openapi
+
+          git diff --cached --quiet && echo "No submodule update" && exit 0
+
+          git commit -m "chore: Update OpenAPI module"
+          git push
