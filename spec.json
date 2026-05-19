@@ -852,6 +852,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
           }
         },
         "summary": "",
@@ -902,6 +905,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
           }
         },
         "summary": "",
@@ -949,6 +955,62 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
+    "/tracks/{pluginId}/{libraryId}/{trackId}/urls": {
+      "get": {
+        "operationId": "getTrackExternalUrls",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalUrl"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
           }
         },
         "summary": "",
