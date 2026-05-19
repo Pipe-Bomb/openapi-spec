@@ -1032,6 +1032,38 @@
           "Docs"
         ]
       }
+    },
+    "/search": {
+      "post": {
+        "operationId": "search",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Search"
+        ]
+      }
     }
   },
   "info": {
@@ -1897,6 +1929,56 @@
           "id",
           "baseUrl",
           "type"
+        ]
+      },
+      "SearchDto": {
+        "type": "object",
+        "properties": {
+          "withTracks": {
+            "type": "boolean"
+          },
+          "withAlbums": {
+            "type": "boolean"
+          },
+          "withArtists": {
+            "type": "boolean"
+          },
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "withTracks",
+          "withAlbums",
+          "withArtists"
+        ]
+      },
+      "SearchResults": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Track"
+            }
+          },
+          "artists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Artist"
+            }
+          },
+          "albums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Album"
+            }
+          }
+        },
+        "required": [
+          "tracks",
+          "artists",
+          "albums"
         ]
       },
       "AttributeMap": {
