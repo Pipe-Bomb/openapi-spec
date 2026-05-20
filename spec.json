@@ -813,6 +813,86 @@
         ]
       }
     },
+    "/ephemeral": {
+      "get": {
+        "operationId": "getAllEphemeralSources",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EphemeralSource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Ephemeral"
+        ]
+      }
+    },
+    "/ephemeral/search": {
+      "post": {
+        "operationId": "searchEphemeralSource",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EphemeralSearchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EphemeralSearchResults"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Ephemeral"
+        ]
+      }
+    },
+    "/ephemeral/attribute-buffer/{file}": {
+      "get": {
+        "operationId": "getAttributeBuffer",
+        "parameters": [
+          {
+            "name": "file",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Ephemeral"
+        ]
+      }
+    },
     "/tracks/{pluginId}/{libraryId}/{trackId}": {
       "get": {
         "operationId": "getTrack",
@@ -1242,7 +1322,8 @@
             "type": "string"
           },
           "sha256": {
-            "type": "string"
+            "type": "object",
+            "nullable": true
           }
         },
         "required": [
@@ -1908,6 +1989,90 @@
           "values"
         ]
       },
+      "EphemeralSource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "pluginId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "pluginId",
+          "name"
+        ]
+      },
+      "EphemeralSearchDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "sourceId",
+          "query"
+        ]
+      },
+      "EphemeralTrack": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "pluginId": {
+            "type": "string"
+          },
+          "libraryId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "attributes": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AttributeMap"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "pluginId",
+          "libraryId",
+          "title",
+          "attributes"
+        ]
+      },
+      "EphemeralSearchResults": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EphemeralTrack"
+            }
+          }
+        },
+        "required": [
+          "tracks"
+        ]
+      },
       "StreamInstance": {
         "type": "object",
         "properties": {
@@ -1944,13 +2109,15 @@
             "type": "boolean"
           },
           "query": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
           "withTracks",
           "withAlbums",
-          "withArtists"
+          "withArtists",
+          "query"
         ]
       },
       "SearchResults": {
