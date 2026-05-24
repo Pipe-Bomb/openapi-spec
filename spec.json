@@ -939,6 +939,38 @@
         "tags": [
           "Artists"
         ]
+      },
+      "post": {
+        "operationId": "updateArtistMetadata",
+        "parameters": [
+          {
+            "name": "artistUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Artist"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Artists"
+        ]
       }
     },
     "/artists/{pluginId}/{identifierId}/{identity}": {
@@ -2552,11 +2584,18 @@
             "items": {
               "$ref": "#/components/schemas/EphemeralTrack"
             }
+          },
+          "albums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Album"
+            }
           }
         },
         "required": [
           "source",
-          "tracks"
+          "tracks",
+          "albums"
         ]
       },
       "ArtistsSearchDto": {
