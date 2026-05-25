@@ -282,6 +282,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "width",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "height",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
@@ -674,6 +690,22 @@
             "in": "path",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "height",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer"
             }
           }
         ],
