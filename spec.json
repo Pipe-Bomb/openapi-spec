@@ -120,6 +120,27 @@
         ]
       }
     },
+    "/attributes": {
+      "get": {
+        "operationId": "getAllAttributes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllAttributes"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Attributes"
+        ]
+      }
+    },
     "/tasks": {
       "get": {
         "operationId": "getTasks",
@@ -2161,6 +2182,68 @@
         },
         "required": [
           "tracks"
+        ]
+      },
+      "LoadedAttribute": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "integer",
+              "decimal",
+              "boolean",
+              "buffer"
+            ]
+          },
+          "supportsMultiple": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pluginId",
+          "sourceId",
+          "key",
+          "type",
+          "supportsMultiple"
+        ]
+      },
+      "AllAttributes": {
+        "type": "object",
+        "properties": {
+          "track": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoadedAttribute"
+            }
+          },
+          "artist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoadedAttribute"
+            }
+          },
+          "album": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoadedAttribute"
+            }
+          }
+        },
+        "required": [
+          "track",
+          "artist",
+          "album"
         ]
       },
       "Task": {
