@@ -1745,6 +1745,13 @@
           "sourceId": {
             "type": "string"
           },
+          "formatted": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "values": {
             "type": "array",
             "items": {
@@ -1756,6 +1763,7 @@
           "type",
           "pluginId",
           "sourceId",
+          "formatted",
           "values"
         ]
       },
@@ -1774,6 +1782,13 @@
           "sourceId": {
             "type": "string"
           },
+          "formatted": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "values": {
             "type": "array",
             "items": {
@@ -1785,6 +1800,7 @@
           "type",
           "pluginId",
           "sourceId",
+          "formatted",
           "values"
         ]
       },
@@ -1803,6 +1819,13 @@
           "sourceId": {
             "type": "string"
           },
+          "formatted": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "values": {
             "type": "array",
             "items": {
@@ -1814,6 +1837,7 @@
           "type",
           "pluginId",
           "sourceId",
+          "formatted",
           "values"
         ]
       },
@@ -1832,6 +1856,13 @@
           "sourceId": {
             "type": "string"
           },
+          "formatted": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "values": {
             "type": "array",
             "items": {
@@ -1843,6 +1874,7 @@
           "type",
           "pluginId",
           "sourceId",
+          "formatted",
           "values"
         ]
       },
@@ -1885,6 +1917,13 @@
           "sourceId": {
             "type": "string"
           },
+          "formatted": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "values": {
             "type": "array",
             "items": {
@@ -1896,6 +1935,7 @@
           "type",
           "pluginId",
           "sourceId",
+          "formatted",
           "values"
         ]
       },
