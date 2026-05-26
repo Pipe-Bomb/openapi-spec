@@ -2835,6 +2835,183 @@
           "albums"
         ]
       },
+      "StringSearchAttributeDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "exists": {
+            "type": "boolean"
+          },
+          "query": {
+            "type": "string"
+          },
+          "partial": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entityType",
+          "type",
+          "key"
+        ]
+      },
+      "BooleanSearchAttributeDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "exists": {
+            "type": "boolean"
+          },
+          "boolean": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entityType",
+          "type",
+          "key"
+        ]
+      },
+      "IntegerSearchAttributeDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "exists": {
+            "type": "boolean"
+          },
+          "integer": {
+            "type": "integer"
+          },
+          "min": {
+            "type": "integer"
+          },
+          "max": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "entityType",
+          "type",
+          "key"
+        ]
+      },
+      "DecimalSearchAttributeDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "exists": {
+            "type": "boolean"
+          },
+          "decimal": {
+            "type": "number"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "entityType",
+          "type",
+          "key"
+        ]
+      },
+      "BufferSearchAttributeDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "buffer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "exists": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entityType",
+          "type",
+          "key"
+        ]
+      },
       "SearchDto": {
         "type": "object",
         "properties": {
@@ -2847,16 +3024,45 @@
           "withArtists": {
             "type": "boolean"
           },
-          "query": {
-            "type": "string",
-            "nullable": true
+          "attributes": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StringSearchAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/BooleanSearchAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/IntegerSearchAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/DecimalSearchAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/BufferSearchAttributeDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/StringSearchAttributeDto",
+                  "boolean": "#/components/schemas/BooleanSearchAttributeDto",
+                  "integer": "#/components/schemas/IntegerSearchAttributeDto",
+                  "decimal": "#/components/schemas/DecimalSearchAttributeDto",
+                  "buffer": "#/components/schemas/BufferSearchAttributeDto"
+                }
+              }
+            }
           }
         },
         "required": [
           "withTracks",
           "withAlbums",
           "withArtists",
-          "query"
+          "attributes"
         ]
       },
       "SearchResults": {
