@@ -141,6 +141,54 @@
         ]
       }
     },
+    "/attributes/buffer/{uuid}": {
+      "put": {
+        "operationId": "uploadAttributeBuffer",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Attributes"
+        ]
+      }
+    },
     "/tasks": {
       "get": {
         "operationId": "getTasks",
@@ -328,6 +376,119 @@
         },
         "tags": [
           "Resources"
+        ]
+      }
+    },
+    "/users/login": {
+      "post": {
+        "operationId": "loginUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/users/signup": {
+      "post": {
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/users/me": {
+      "get": {
+        "operationId": "getSelf",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/users/logout": {
+      "post": {
+        "operationId": "logoutUser",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
         ]
       }
     },
@@ -1590,16 +1751,16 @@
         ]
       }
     },
-    "/users/login": {
-      "post": {
-        "operationId": "loginUser",
+    "/playlists": {
+      "put": {
+        "operationId": "createPlaylist",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginDto"
+                "$ref": "#/components/schemas/CreatePlaylistDto"
               }
             }
           }
@@ -1610,7 +1771,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/Playlist"
                 }
               }
             }
@@ -1621,48 +1782,11 @@
         },
         "summary": "",
         "tags": [
-          "Users"
+          "Playlists"
         ]
-      }
-    },
-    "/users/signup": {
-      "post": {
-        "operationId": "createUser",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/LoginDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Users"
-        ]
-      }
-    },
-    "/users/me": {
+      },
       "get": {
-        "operationId": "getSelf",
+        "operationId": "getOwnPlaylists",
         "parameters": [],
         "responses": {
           "200": {
@@ -1670,7 +1794,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Playlist"
+                  }
                 }
               }
             }
@@ -1681,25 +1808,125 @@
         },
         "summary": "",
         "tags": [
-          "Users"
+          "Playlists"
         ]
       }
     },
-    "/users/logout": {
-      "post": {
-        "operationId": "logoutUser",
-        "parameters": [],
+    "/playlists/{uuid}": {
+      "get": {
+        "operationId": "getPlaylist",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
+      "delete": {
+        "operationId": "deletePlaylist",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "204": {
             "description": ""
           },
           "401": {
             "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
           }
         },
         "summary": "",
         "tags": [
-          "Users"
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/add": {
+      "patch": {
+        "operationId": "addTracksToPlaylist",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPlaylistTracksDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
         ]
       }
     }
@@ -2353,6 +2580,36 @@
         },
         "required": [
           "sources"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uuid",
+          "username"
         ]
       },
       "IdentifierDependency": {
@@ -3093,34 +3350,241 @@
           "albums"
         ]
       },
-      "LoginDto": {
+      "CustomStringAttributeDto": {
         "type": "object",
         "properties": {
-          "username": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "key": {
             "type": "string"
           },
-          "password": {
+          "value": {
             "type": "string"
           }
         },
         "required": [
-          "username",
-          "password"
+          "type",
+          "key",
+          "value"
         ]
       },
-      "User": {
+      "CustomBooleanAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomIntegerAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomDecimalAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomBufferAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "buffer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "extension"
+        ]
+      },
+      "CreatePlaylistDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/CustomStringAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomBooleanAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomIntegerAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomDecimalAttributeDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/CustomStringAttributeDto",
+                  "boolean": "#/components/schemas/CustomBooleanAttributeDto",
+                  "integer": "#/components/schemas/CustomIntegerAttributeDto",
+                  "decimal": "#/components/schemas/CustomDecimalAttributeDto"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "PlaylistTrack": {
+        "type": "object",
+        "properties": {
+          "track": {
+            "$ref": "#/components/schemas/Track"
+          },
+          "dateAdded": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "track",
+          "dateAdded"
+        ]
+      },
+      "Playlist": {
         "type": "object",
         "properties": {
           "uuid": {
             "type": "string"
           },
-          "username": {
+          "ownerUuid": {
             "type": "string"
+          },
+          "owner": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
+          },
+          "attributes": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AttributeMap"
+              }
+            ],
+            "nullable": true
+          },
+          "tracks": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaylistTrack"
+            }
           }
         },
         "required": [
           "uuid",
-          "username"
+          "ownerUuid",
+          "owner",
+          "attributes",
+          "tracks"
+        ]
+      },
+      "NewPlaylistTrackDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "libraryId": {
+            "type": "string"
+          },
+          "trackId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "libraryId",
+          "trackId"
+        ]
+      },
+      "AddPlaylistTracksDto": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewPlaylistTrackDto"
+            }
+          }
+        },
+        "required": [
+          "tracks"
         ]
       },
       "AttributeMap": {
