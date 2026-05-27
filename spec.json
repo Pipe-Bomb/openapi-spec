@@ -1929,6 +1929,49 @@
           "Playlists"
         ]
       }
+    },
+    "/playlists/{uuid}/pending": {
+      "get": {
+        "operationId": "getPlaylistUpdateProgress",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrackCreationSession"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
     }
   },
   "info": {
@@ -3585,6 +3628,26 @@
         },
         "required": [
           "tracks"
+        ]
+      },
+      "TrackCreationSession": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "dateStarted": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "percent": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "uuid",
+          "dateStarted",
+          "percent"
         ]
       },
       "AttributeMap": {
