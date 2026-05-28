@@ -3616,18 +3616,31 @@
           "trackId"
         ]
       },
+      "NewPlaylistAlbumDto": {
+        "type": "object",
+        "properties": {}
+      },
       "AddPlaylistTracksDto": {
         "type": "object",
         "properties": {
           "tracks": {
+            "nullable": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/NewPlaylistTrackDto"
             }
+          },
+          "albums": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewPlaylistAlbumDto"
+            }
           }
         },
         "required": [
-          "tracks"
+          "tracks",
+          "albums"
         ]
       },
       "TrackCreationSession": {
