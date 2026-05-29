@@ -951,6 +951,41 @@
         ]
       }
     },
+    "/tracks": {
+      "post": {
+        "operationId": "getTracks",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackIdsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Track"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
     "/tracks/{pluginId}/{libraryId}/{trackId}/identities": {
       "get": {
         "operationId": "getTrackIdentities",
@@ -1848,6 +1883,57 @@
           "Playlists"
         ]
       },
+      "post": {
+        "operationId": "getPlaylistTracks",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistTracksQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistTrack"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
       "delete": {
         "operationId": "deletePlaylist",
         "parameters": [
@@ -1863,6 +1949,49 @@
         "responses": {
           "204": {
             "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/all": {
+      "get": {
+        "operationId": "getAllPlaylistTrackIds",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistTrack"
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": ""
@@ -2387,7 +2516,7 @@
       "Track": {
         "type": "object",
         "properties": {
-          "id": {
+          "trackId": {
             "type": "string"
           },
           "pluginId": {
@@ -2430,7 +2559,7 @@
           }
         },
         "required": [
-          "id",
+          "trackId",
           "pluginId",
           "libraryId",
           "title",
@@ -2906,7 +3035,7 @@
       "EphemeralTrack": {
         "type": "object",
         "properties": {
-          "id": {
+          "trackId": {
             "type": "string"
           },
           "pluginId": {
@@ -2935,7 +3064,7 @@
           }
         },
         "required": [
-          "id",
+          "trackId",
           "pluginId",
           "libraryId",
           "title",
@@ -2969,6 +3098,39 @@
           "tracks",
           "artists",
           "albums"
+        ]
+      },
+      "TrackIdDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "libraryId": {
+            "type": "string"
+          },
+          "trackId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "libraryId",
+          "trackId"
+        ]
+      },
+      "TrackIdsDto": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrackIdDto"
+            }
+          }
+        },
+        "required": [
+          "tracks"
         ]
       },
       "StreamInstance": {
@@ -3587,6 +3749,10 @@
             "items": {
               "$ref": "#/components/schemas/PlaylistTrack"
             }
+          },
+          "trackCount": {
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
@@ -3594,26 +3760,26 @@
           "ownerUuid",
           "owner",
           "attributes",
-          "tracks"
+          "tracks",
+          "trackCount"
         ]
       },
-      "NewPlaylistTrackDto": {
+      "PlaylistTracksQuery": {
         "type": "object",
         "properties": {
-          "pluginId": {
-            "type": "string"
+          "amount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
           },
-          "libraryId": {
-            "type": "string"
-          },
-          "trackId": {
-            "type": "string"
+          "offset": {
+            "type": "integer",
+            "minimum": 0
           }
         },
         "required": [
-          "pluginId",
-          "libraryId",
-          "trackId"
+          "amount",
+          "offset"
         ]
       },
       "NewPlaylistAlbumDto": {
@@ -3627,7 +3793,7 @@
             "nullable": true,
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/NewPlaylistTrackDto"
+              "$ref": "#/components/schemas/TrackIdDto"
             }
           },
           "albums": {
