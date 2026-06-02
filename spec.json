@@ -2837,8 +2837,7 @@
             "type": "string"
           },
           "addedBySystem": {
-            "type": "boolean",
-            "nullable": true
+            "type": "boolean"
           },
           "addedBy": {
             "nullable": true,
