@@ -492,6 +492,40 @@
         ]
       }
     },
+    "/users/{uuid}": {
+      "get": {
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/identifiers": {
       "get": {
         "operationId": "getAllIdentifiers",
@@ -2777,11 +2811,91 @@
           },
           "username": {
             "type": "string"
+          },
+          "playlists": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Playlist"
+            }
           }
         },
         "required": [
           "uuid",
-          "username"
+          "username",
+          "playlists"
+        ]
+      },
+      "PlaylistTrack": {
+        "type": "object",
+        "properties": {
+          "track": {
+            "$ref": "#/components/schemas/Track"
+          },
+          "dateAdded": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "addedBySystem": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "addedBy": {
+            "type": "object",
+            "nullable": true
+          }
+        },
+        "required": [
+          "track",
+          "dateAdded",
+          "addedBySystem",
+          "addedBy"
+        ]
+      },
+      "Playlist": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "ownerUuid": {
+            "type": "string"
+          },
+          "owner": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
+          },
+          "attributes": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AttributeMap"
+              }
+            ],
+            "nullable": true
+          },
+          "tracks": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaylistTrack"
+            }
+          },
+          "trackCount": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "uuid",
+          "ownerUuid",
+          "owner",
+          "attributes",
+          "tracks",
+          "trackCount"
         ]
       },
       "IdentifierDependency": {
@@ -3700,68 +3814,6 @@
         },
         "required": [
           "attributes"
-        ]
-      },
-      "PlaylistTrack": {
-        "type": "object",
-        "properties": {
-          "track": {
-            "$ref": "#/components/schemas/Track"
-          },
-          "dateAdded": {
-            "format": "date-time",
-            "type": "string"
-          }
-        },
-        "required": [
-          "track",
-          "dateAdded"
-        ]
-      },
-      "Playlist": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "ownerUuid": {
-            "type": "string"
-          },
-          "owner": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              }
-            ]
-          },
-          "attributes": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/AttributeMap"
-              }
-            ],
-            "nullable": true
-          },
-          "tracks": {
-            "nullable": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PlaylistTrack"
-            }
-          },
-          "trackCount": {
-            "type": "integer",
-            "nullable": true
-          }
-        },
-        "required": [
-          "uuid",
-          "ownerUuid",
-          "owner",
-          "attributes",
-          "tracks",
-          "trackCount"
         ]
       },
       "PlaylistTracksQuery": {
