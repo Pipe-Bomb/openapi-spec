@@ -2841,8 +2841,12 @@
             "nullable": true
           },
           "addedBy": {
-            "type": "object",
-            "nullable": true
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
           }
         },
         "required": [
