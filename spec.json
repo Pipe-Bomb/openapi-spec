@@ -935,6 +935,486 @@
         ]
       }
     },
+    "/playlists": {
+      "put": {
+        "operationId": "createPlaylist",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePlaylistDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
+      "get": {
+        "operationId": "getOwnPlaylists",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Playlist"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}": {
+      "get": {
+        "operationId": "getPlaylist",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
+      "post": {
+        "operationId": "getPlaylistTracks",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistTracksQuery"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistTrack"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
+      "delete": {
+        "operationId": "deletePlaylist",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/all": {
+      "get": {
+        "operationId": "getAllPlaylistTrackIds",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlaylistTrack"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/add": {
+      "patch": {
+        "operationId": "addTracksToPlaylist",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddPlaylistTracksDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/pending": {
+      "get": {
+        "operationId": "getPlaylistUpdateProgress",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrackCreationSession"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/filters": {
+      "put": {
+        "operationId": "addPlaylistSmartFilterGroup",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSmartFilterGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
+      "post": {
+        "operationId": "runPlaylistSmartFilters",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{playlistUuid}/filters/{filterGroupUuid}": {
+      "patch": {
+        "operationId": "updatePlaylistSmartFilterGroup",
+        "parameters": [
+          {
+            "name": "playlistUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filterGroupUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSmartFilterGroupDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      },
+      "delete": {
+        "operationId": "deletePlaylistSmartFilterGroup",
+        "parameters": [
+          {
+            "name": "playlistUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filterGroupUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
     "/tracks/{pluginId}/{libraryId}/{trackId}": {
       "get": {
         "operationId": "getTrack",
@@ -1817,486 +2297,6 @@
         "summary": "",
         "tags": [
           "Search"
-        ]
-      }
-    },
-    "/playlists": {
-      "put": {
-        "operationId": "createPlaylist",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreatePlaylistDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Playlist"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      },
-      "get": {
-        "operationId": "getOwnPlaylists",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Playlist"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/playlists/{uuid}": {
-      "get": {
-        "operationId": "getPlaylist",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Playlist"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      },
-      "post": {
-        "operationId": "getPlaylistTracks",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PlaylistTracksQuery"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PlaylistTrack"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      },
-      "delete": {
-        "operationId": "deletePlaylist",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/playlists/{uuid}/all": {
-      "get": {
-        "operationId": "getAllPlaylistTrackIds",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PlaylistTrack"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/playlists/{uuid}/add": {
-      "patch": {
-        "operationId": "addTracksToPlaylist",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddPlaylistTracksDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Playlist"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/playlists/{uuid}/pending": {
-      "get": {
-        "operationId": "getPlaylistUpdateProgress",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TrackCreationSession"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/playlists/{uuid}/filters": {
-      "put": {
-        "operationId": "addPlaylistSmartFilterGroup",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSmartFilterGroupDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      },
-      "post": {
-        "operationId": "runPlaylistSmartFilters",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      }
-    },
-    "/playlists/{playlistUuid}/filters/{filterGroupUuid}": {
-      "patch": {
-        "operationId": "updatePlaylistSmartFilterGroup",
-        "parameters": [
-          {
-            "name": "playlistUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filterGroupUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateSmartFilterGroupDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
-        ]
-      },
-      "delete": {
-        "operationId": "deletePlaylistSmartFilterGroup",
-        "parameters": [
-          {
-            "name": "playlistUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "filterGroupUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Playlists"
         ]
       }
     }
@@ -3677,6 +3677,171 @@
           "albums"
         ]
       },
+      "CustomStringAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomBooleanAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomIntegerAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomDecimalAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "value"
+        ]
+      },
+      "CustomBufferAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "buffer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "extension"
+        ]
+      },
+      "CreatePlaylistDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/CustomStringAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomBooleanAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomIntegerAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomDecimalAttributeDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/CustomStringAttributeDto",
+                  "boolean": "#/components/schemas/CustomBooleanAttributeDto",
+                  "integer": "#/components/schemas/CustomIntegerAttributeDto",
+                  "decimal": "#/components/schemas/CustomDecimalAttributeDto"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "PlaylistTracksQuery": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "amount",
+          "offset"
+        ]
+      },
       "TrackIdDto": {
         "type": "object",
         "properties": {
@@ -3694,6 +3859,279 @@
           "pluginId",
           "libraryId",
           "trackId"
+        ]
+      },
+      "NewPlaylistAlbumDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "AddPlaylistTracksDto": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrackIdDto"
+            }
+          },
+          "albums": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NewPlaylistAlbumDto"
+            }
+          }
+        },
+        "required": [
+          "tracks",
+          "albums"
+        ]
+      },
+      "TrackCreationSession": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "dateStarted": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "nullable": true
+          }
+        },
+        "required": [
+          "uuid",
+          "dateStarted",
+          "percent"
+        ]
+      },
+      "StringSmartFilterDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "attributeKey": {
+            "type": "string"
+          },
+          "inverse": {
+            "type": "boolean"
+          },
+          "value": {
+            "type": "string"
+          },
+          "partial": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entityType",
+          "attributeType",
+          "attributeKey",
+          "inverse"
+        ]
+      },
+      "BooleanSmartFilterDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "attributeKey": {
+            "type": "string"
+          },
+          "inverse": {
+            "type": "boolean"
+          },
+          "value": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entityType",
+          "attributeType",
+          "attributeKey",
+          "inverse"
+        ]
+      },
+      "IntegerSmartFilterDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "attributeKey": {
+            "type": "string"
+          },
+          "inverse": {
+            "type": "boolean"
+          },
+          "value": {
+            "type": "integer"
+          },
+          "min": {
+            "type": "integer"
+          },
+          "max": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "entityType",
+          "attributeType",
+          "attributeKey",
+          "inverse"
+        ]
+      },
+      "DecimalSmartFilterDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "attributeKey": {
+            "type": "string"
+          },
+          "inverse": {
+            "type": "boolean"
+          },
+          "value": {
+            "type": "number"
+          },
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "entityType",
+          "attributeType",
+          "attributeKey",
+          "inverse"
+        ]
+      },
+      "BufferSmartFilterDto": {
+        "type": "object",
+        "properties": {
+          "entityType": {
+            "type": "string",
+            "enum": [
+              "track",
+              "artist",
+              "album"
+            ]
+          },
+          "attributeType": {
+            "type": "string",
+            "enum": [
+              "buffer"
+            ]
+          },
+          "attributeKey": {
+            "type": "string"
+          },
+          "inverse": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entityType",
+          "attributeType",
+          "attributeKey",
+          "inverse"
+        ]
+      },
+      "CreateSmartFilterGroupDto": {
+        "type": "object",
+        "properties": {
+          "filters": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StringSmartFilterDto"
+                },
+                {
+                  "$ref": "#/components/schemas/BooleanSmartFilterDto"
+                },
+                {
+                  "$ref": "#/components/schemas/IntegerSmartFilterDto"
+                },
+                {
+                  "$ref": "#/components/schemas/DecimalSmartFilterDto"
+                },
+                {
+                  "$ref": "#/components/schemas/BufferSmartFilterDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/StringSmartFilterDto",
+                  "boolean": "#/components/schemas/BooleanSmartFilterDto",
+                  "integer": "#/components/schemas/IntegerSmartFilterDto",
+                  "decimal": "#/components/schemas/DecimalSmartFilterDto",
+                  "buffer": "#/components/schemas/BufferSmartFilterDto"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "filters"
         ]
       },
       "TrackIdsDto": {
@@ -4130,444 +4568,6 @@
           "tracks",
           "artists",
           "albums"
-        ]
-      },
-      "CustomStringAttributeDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "string"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "value"
-        ]
-      },
-      "CustomBooleanAttributeDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "boolean"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "value"
-        ]
-      },
-      "CustomIntegerAttributeDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "integer"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "value"
-        ]
-      },
-      "CustomDecimalAttributeDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "decimal"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "value"
-        ]
-      },
-      "CustomBufferAttributeDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "buffer"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "extension": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "extension"
-        ]
-      },
-      "CreatePlaylistDto": {
-        "type": "object",
-        "properties": {
-          "attributes": {
-            "type": "array",
-            "nullable": true,
-            "items": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/CustomStringAttributeDto"
-                },
-                {
-                  "$ref": "#/components/schemas/CustomBooleanAttributeDto"
-                },
-                {
-                  "$ref": "#/components/schemas/CustomIntegerAttributeDto"
-                },
-                {
-                  "$ref": "#/components/schemas/CustomDecimalAttributeDto"
-                }
-              ],
-              "discriminator": {
-                "propertyName": "type",
-                "mapping": {
-                  "string": "#/components/schemas/CustomStringAttributeDto",
-                  "boolean": "#/components/schemas/CustomBooleanAttributeDto",
-                  "integer": "#/components/schemas/CustomIntegerAttributeDto",
-                  "decimal": "#/components/schemas/CustomDecimalAttributeDto"
-                }
-              }
-            }
-          }
-        },
-        "required": [
-          "attributes"
-        ]
-      },
-      "PlaylistTracksQuery": {
-        "type": "object",
-        "properties": {
-          "amount": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 1000
-          },
-          "offset": {
-            "type": "integer",
-            "minimum": 0
-          }
-        },
-        "required": [
-          "amount",
-          "offset"
-        ]
-      },
-      "NewPlaylistAlbumDto": {
-        "type": "object",
-        "properties": {}
-      },
-      "AddPlaylistTracksDto": {
-        "type": "object",
-        "properties": {
-          "tracks": {
-            "nullable": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TrackIdDto"
-            }
-          },
-          "albums": {
-            "nullable": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NewPlaylistAlbumDto"
-            }
-          }
-        },
-        "required": [
-          "tracks",
-          "albums"
-        ]
-      },
-      "TrackCreationSession": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "dateStarted": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "percent": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100,
-            "nullable": true
-          }
-        },
-        "required": [
-          "uuid",
-          "dateStarted",
-          "percent"
-        ]
-      },
-      "StringSmartFilterDto": {
-        "type": "object",
-        "properties": {
-          "entityType": {
-            "type": "string",
-            "enum": [
-              "track",
-              "artist",
-              "album"
-            ]
-          },
-          "attributeType": {
-            "type": "string",
-            "enum": [
-              "string"
-            ]
-          },
-          "attributeKey": {
-            "type": "string"
-          },
-          "inverse": {
-            "type": "boolean"
-          },
-          "value": {
-            "type": "string"
-          },
-          "partial": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "entityType",
-          "attributeType",
-          "attributeKey",
-          "inverse"
-        ]
-      },
-      "BooleanSmartFilterDto": {
-        "type": "object",
-        "properties": {
-          "entityType": {
-            "type": "string",
-            "enum": [
-              "track",
-              "artist",
-              "album"
-            ]
-          },
-          "attributeType": {
-            "type": "string",
-            "enum": [
-              "boolean"
-            ]
-          },
-          "attributeKey": {
-            "type": "string"
-          },
-          "inverse": {
-            "type": "boolean"
-          },
-          "value": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "entityType",
-          "attributeType",
-          "attributeKey",
-          "inverse"
-        ]
-      },
-      "IntegerSmartFilterDto": {
-        "type": "object",
-        "properties": {
-          "entityType": {
-            "type": "string",
-            "enum": [
-              "track",
-              "artist",
-              "album"
-            ]
-          },
-          "attributeType": {
-            "type": "string",
-            "enum": [
-              "integer"
-            ]
-          },
-          "attributeKey": {
-            "type": "string"
-          },
-          "inverse": {
-            "type": "boolean"
-          },
-          "value": {
-            "type": "integer"
-          },
-          "min": {
-            "type": "integer"
-          },
-          "max": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "entityType",
-          "attributeType",
-          "attributeKey",
-          "inverse"
-        ]
-      },
-      "DecimalSmartFilterDto": {
-        "type": "object",
-        "properties": {
-          "entityType": {
-            "type": "string",
-            "enum": [
-              "track",
-              "artist",
-              "album"
-            ]
-          },
-          "attributeType": {
-            "type": "string",
-            "enum": [
-              "decimal"
-            ]
-          },
-          "attributeKey": {
-            "type": "string"
-          },
-          "inverse": {
-            "type": "boolean"
-          },
-          "value": {
-            "type": "number"
-          },
-          "min": {
-            "type": "number"
-          },
-          "max": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "entityType",
-          "attributeType",
-          "attributeKey",
-          "inverse"
-        ]
-      },
-      "BufferSmartFilterDto": {
-        "type": "object",
-        "properties": {
-          "entityType": {
-            "type": "string",
-            "enum": [
-              "track",
-              "artist",
-              "album"
-            ]
-          },
-          "attributeType": {
-            "type": "string",
-            "enum": [
-              "buffer"
-            ]
-          },
-          "attributeKey": {
-            "type": "string"
-          },
-          "inverse": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "entityType",
-          "attributeType",
-          "attributeKey",
-          "inverse"
-        ]
-      },
-      "CreateSmartFilterGroupDto": {
-        "type": "object",
-        "properties": {
-          "filters": {
-            "type": "array",
-            "nullable": true,
-            "items": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/StringSmartFilterDto"
-                },
-                {
-                  "$ref": "#/components/schemas/BooleanSmartFilterDto"
-                },
-                {
-                  "$ref": "#/components/schemas/IntegerSmartFilterDto"
-                },
-                {
-                  "$ref": "#/components/schemas/DecimalSmartFilterDto"
-                },
-                {
-                  "$ref": "#/components/schemas/BufferSmartFilterDto"
-                }
-              ],
-              "discriminator": {
-                "propertyName": "type",
-                "mapping": {
-                  "string": "#/components/schemas/StringSmartFilterDto",
-                  "boolean": "#/components/schemas/BooleanSmartFilterDto",
-                  "integer": "#/components/schemas/IntegerSmartFilterDto",
-                  "decimal": "#/components/schemas/DecimalSmartFilterDto",
-                  "buffer": "#/components/schemas/BufferSmartFilterDto"
-                }
-              }
-            }
-          }
-        },
-        "required": [
-          "filters"
         ]
       },
       "AttributeMap": {
