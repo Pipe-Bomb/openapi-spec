@@ -1158,9 +1158,9 @@
         ]
       }
     },
-    "/playlists/{uuid}/add": {
+    "/playlists/{uuid}/tracks": {
       "patch": {
-        "operationId": "addTracksToPlaylist",
+        "operationId": "updatePlaylistTracks",
         "parameters": [
           {
             "name": "uuid",
@@ -1176,7 +1176,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddPlaylistTracksDto"
+                "$ref": "#/components/schemas/UpdatePlaylistTracksDto"
               }
             }
           }
@@ -1188,6 +1188,59 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
+    "/playlists/{uuid}/attributes": {
+      "patch": {
+        "operationId": "updatePlaylistAttributes",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlaylistAttributesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttributeUploadSessionResponse"
+                  }
                 }
               }
             }
@@ -3324,6 +3377,14 @@
               }
             ]
           },
+          "dateCreated": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "dateModified": {
+            "format": "date-time",
+            "type": "string"
+          },
           "attributes": {
             "oneOf": [
               {
@@ -3355,6 +3416,8 @@
           "uuid",
           "ownerUuid",
           "owner",
+          "dateCreated",
+          "dateModified",
           "attributes",
           "filterGroups",
           "tracks",
@@ -3765,28 +3828,6 @@
           "value"
         ]
       },
-      "CustomBufferAttributeDto": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "buffer"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "extension": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "type",
-          "key",
-          "extension"
-        ]
-      },
       "CreatePlaylistDto": {
         "type": "object",
         "properties": {
@@ -3886,6 +3927,116 @@
         "required": [
           "tracks",
           "albums"
+        ]
+      },
+      "UpdatePlaylistTracksDto": {
+        "type": "object",
+        "properties": {
+          "add": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddPlaylistTracksDto"
+              }
+            ]
+          },
+          "remove": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TrackIdDto"
+            }
+          }
+        },
+        "required": [
+          "add",
+          "remove"
+        ]
+      },
+      "CustomBufferAttributeDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "buffer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "extension"
+        ]
+      },
+      "UpdatePlaylistAttributesDto": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/CustomStringAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomBooleanAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomIntegerAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomDecimalAttributeDto"
+                },
+                {
+                  "$ref": "#/components/schemas/CustomBufferAttributeDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/CustomStringAttributeDto",
+                  "boolean": "#/components/schemas/CustomBooleanAttributeDto",
+                  "integer": "#/components/schemas/CustomIntegerAttributeDto",
+                  "decimal": "#/components/schemas/CustomDecimalAttributeDto",
+                  "buffer": "#/components/schemas/CustomBufferAttributeDto"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "attributes"
+        ]
+      },
+      "AttributeUploadSessionResponse": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "extension": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "extension",
+          "uuid",
+          "url"
         ]
       },
       "TrackCreationSession": {
