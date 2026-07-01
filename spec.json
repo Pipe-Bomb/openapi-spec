@@ -741,7 +741,7 @@
         ]
       }
     },
-    "/plugin-config": {
+    "/plugin-config/plugin": {
       "get": {
         "operationId": "getAllPluginConfigs",
         "parameters": [],
@@ -763,7 +763,29 @@
         ]
       }
     },
-    "/plugin-config/{pluginId}": {
+    "/plugin-config/user": {
+      "get": {
+        "operationId": "getAllUserConfigs",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserConfigs"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "PluginConfig"
+        ]
+      }
+    },
+    "/plugin-config/plugin/{pluginId}": {
       "get": {
         "operationId": "getPluginConfig",
         "parameters": [
@@ -828,6 +850,104 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "PluginConfig"
+        ]
+      }
+    },
+    "/plugin-config/user/{pluginId}/{configId}": {
+      "get": {
+        "operationId": "getUserConfig",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PluginConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "PluginConfig"
+        ]
+      },
+      "post": {
+        "operationId": "updateUserConfig",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "configId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PluginConfigUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PluginConfig"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": ""
           },
           "404": {
             "description": ""
@@ -3505,6 +3625,35 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PluginConfigStub"
+            }
+          }
+        },
+        "required": [
+          "configs"
+        ]
+      },
+      "UserConfigStub": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "configId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "configId"
+        ]
+      },
+      "UserConfigs": {
+        "type": "object",
+        "properties": {
+          "configs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserConfigStub"
             }
           }
         },
