@@ -2899,6 +2899,10 @@
           "title": {
             "type": "string"
           },
+          "dateAdded": {
+            "format": "date-time",
+            "type": "string"
+          },
           "artists": {
             "nullable": true,
             "type": "array",
@@ -2934,6 +2938,7 @@
           "pluginId",
           "libraryId",
           "title",
+          "dateAdded",
           "artists",
           "albums",
           "attributes",
