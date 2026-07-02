@@ -224,6 +224,16 @@
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartTaskDto"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": ""
@@ -3041,6 +3051,13 @@
           "taskId": {
             "type": "string"
           },
+          "subTasks": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -3063,6 +3080,7 @@
           "uuid",
           "pluginId",
           "taskId",
+          "subTasks",
           "status",
           "percent",
           "resumable"
@@ -3087,6 +3105,18 @@
         "required": [
           "pluginTasks",
           "systemTasks"
+        ]
+      },
+      "StartTaskDto": {
+        "type": "object",
+        "properties": {
+          "subTask": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "subTask"
         ]
       },
       "AttributeSource": {
