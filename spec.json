@@ -1391,6 +1391,47 @@
         ]
       }
     },
+    "/playlists/{uuid}/visibility": {
+      "patch": {
+        "operationId": "updatePlaylistVisibility",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaylistVisibilityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Playlist"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
     "/playlists/{uuid}/pending": {
       "get": {
         "operationId": "getPlaylistUpdateProgress",
@@ -1775,6 +1816,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
           },
           "404": {
             "description": ""
@@ -3205,6 +3252,14 @@
           "playlists"
         ]
       },
+      "PlaylistVisibility": {
+        "type": "string",
+        "enum": [
+          "public",
+          "unlisted",
+          "private"
+        ]
+      },
       "AttributeEntity": {
         "type": "string",
         "enum": [
@@ -3540,6 +3595,13 @@
             "format": "date-time",
             "type": "string"
           },
+          "visibility": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlaylistVisibility"
+              }
+            ]
+          },
           "attributes": {
             "oneOf": [
               {
@@ -3573,6 +3635,7 @@
           "owner",
           "dateCreated",
           "dateModified",
+          "visibility",
           "attributes",
           "filterGroups",
           "tracks",
@@ -4222,6 +4285,10 @@
           "uuid",
           "url"
         ]
+      },
+      "PlaylistVisibilityDto": {
+        "type": "object",
+        "properties": {}
       },
       "TrackCreationSession": {
         "type": "object",
