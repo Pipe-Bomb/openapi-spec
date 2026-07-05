@@ -1137,6 +1137,17 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "tracks",
+            "required": false,
+            "in": "query",
+            "description": "Maximum number of tracks to include",
+            "schema": {
+              "minimum": 0,
+              "maximum": 200,
+              "type": "number"
+            }
           }
         ],
         "responses": {
