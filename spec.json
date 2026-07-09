@@ -120,137 +120,6 @@
         ]
       }
     },
-    "/attributes": {
-      "get": {
-        "operationId": "getAllAttributes",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AllAttributes"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Attributes"
-        ]
-      }
-    },
-    "/attributes/buffer/{uuid}": {
-      "put": {
-        "operationId": "uploadAttributeBuffer",
-        "parameters": [
-          {
-            "name": "uuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Attributes"
-        ]
-      }
-    },
-    "/tasks": {
-      "get": {
-        "operationId": "getTasks",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AllTasksResponse"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Tasks"
-        ]
-      }
-    },
-    "/tasks/{taskUuid}/start": {
-      "post": {
-        "operationId": "startTask",
-        "parameters": [
-          {
-            "name": "taskUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/StartTaskDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          },
-          "409": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Tasks"
-        ]
-      }
-    },
     "/workflows": {
       "get": {
         "operationId": "getAllWorkflows",
@@ -805,6 +674,137 @@
         "summary": "",
         "tags": [
           "Users"
+        ]
+      }
+    },
+    "/attributes": {
+      "get": {
+        "operationId": "getAllAttributes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllAttributes"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Attributes"
+        ]
+      }
+    },
+    "/attributes/buffer/{uuid}": {
+      "put": {
+        "operationId": "uploadAttributeBuffer",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Attributes"
+        ]
+      }
+    },
+    "/tasks": {
+      "get": {
+        "operationId": "getTasks",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AllTasksResponse"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tasks"
+        ]
+      }
+    },
+    "/tasks/{taskUuid}/start": {
+      "post": {
+        "operationId": "startTask",
+        "parameters": [
+          {
+            "name": "taskUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StartTaskDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tasks"
         ]
       }
     },
@@ -3437,156 +3437,6 @@
           "tracks"
         ]
       },
-      "AttributeType": {
-        "type": "string",
-        "enum": [
-          "string",
-          "integer",
-          "decimal",
-          "boolean",
-          "buffer"
-        ]
-      },
-      "LoadedAttribute": {
-        "type": "object",
-        "properties": {
-          "pluginId": {
-            "type": "string"
-          },
-          "sourceId": {
-            "type": "string"
-          },
-          "key": {
-            "type": "string"
-          },
-          "type": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AttributeType"
-              }
-            ]
-          },
-          "supportsMultiple": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "pluginId",
-          "sourceId",
-          "key",
-          "type",
-          "supportsMultiple"
-        ]
-      },
-      "AllAttributes": {
-        "type": "object",
-        "properties": {
-          "track": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LoadedAttribute"
-            }
-          },
-          "artist": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LoadedAttribute"
-            }
-          },
-          "album": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LoadedAttribute"
-            }
-          }
-        },
-        "required": [
-          "track",
-          "artist",
-          "album"
-        ]
-      },
-      "Task": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "pluginId": {
-            "type": "string",
-            "nullable": true
-          },
-          "taskId": {
-            "type": "string"
-          },
-          "subTasks": {
-            "nullable": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "stopped",
-              "suspended",
-              "running"
-            ]
-          },
-          "percent": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100,
-            "nullable": true
-          },
-          "resumable": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "uuid",
-          "pluginId",
-          "taskId",
-          "subTasks",
-          "status",
-          "percent",
-          "resumable"
-        ]
-      },
-      "AllTasksResponse": {
-        "type": "object",
-        "properties": {
-          "pluginTasks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Task"
-            }
-          },
-          "systemTasks": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Task"
-            }
-          }
-        },
-        "required": [
-          "pluginTasks",
-          "systemTasks"
-        ]
-      },
-      "StartTaskDto": {
-        "type": "object",
-        "properties": {
-          "subTask": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "required": [
-          "subTask"
-        ]
-      },
       "StringWorkflowStepOptionValue": {
         "type": "object",
         "properties": {
@@ -4117,6 +3967,16 @@
           "album"
         ]
       },
+      "AttributeType": {
+        "type": "string",
+        "enum": [
+          "string",
+          "integer",
+          "decimal",
+          "boolean",
+          "buffer"
+        ]
+      },
       "StringSmartPlaylistFilter": {
         "type": "object",
         "properties": {
@@ -4489,6 +4349,146 @@
           "filterGroups",
           "tracks",
           "trackCount"
+        ]
+      },
+      "LoadedAttribute": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AttributeType"
+              }
+            ]
+          },
+          "supportsMultiple": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pluginId",
+          "sourceId",
+          "key",
+          "type",
+          "supportsMultiple"
+        ]
+      },
+      "AllAttributes": {
+        "type": "object",
+        "properties": {
+          "track": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoadedAttribute"
+            }
+          },
+          "artist": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoadedAttribute"
+            }
+          },
+          "album": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LoadedAttribute"
+            }
+          }
+        },
+        "required": [
+          "track",
+          "artist",
+          "album"
+        ]
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "subTasks": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "stopped",
+              "suspended",
+              "running"
+            ]
+          },
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "nullable": true
+          },
+          "resumable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "uuid",
+          "pluginId",
+          "taskId",
+          "subTasks",
+          "status",
+          "percent",
+          "resumable"
+        ]
+      },
+      "AllTasksResponse": {
+        "type": "object",
+        "properties": {
+          "pluginTasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            }
+          },
+          "systemTasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            }
+          }
+        },
+        "required": [
+          "pluginTasks",
+          "systemTasks"
+        ]
+      },
+      "StartTaskDto": {
+        "type": "object",
+        "properties": {
+          "subTask": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "subTask"
         ]
       },
       "AttributeSource": {
