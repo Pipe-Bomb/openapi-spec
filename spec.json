@@ -3826,13 +3826,33 @@
             "items": {
               "$ref": "#/components/schemas/WorkflowStep"
             }
+          },
+          "currentActiveStepIndex": {
+            "type": "integer",
+            "nullable": true
+          },
+          "currentActiveStepUuid": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalActiveSteps": {
+            "type": "integer",
+            "nullable": true
+          },
+          "currentActiveStepPercent": {
+            "type": "number",
+            "nullable": true
           }
         },
         "required": [
           "uuid",
           "name",
           "dateCreated",
-          "steps"
+          "steps",
+          "currentActiveStepIndex",
+          "currentActiveStepUuid",
+          "totalActiveSteps",
+          "currentActiveStepPercent"
         ]
       },
       "CreateWorkflowDto": {
