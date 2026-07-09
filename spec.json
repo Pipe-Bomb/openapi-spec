@@ -251,40 +251,9 @@
         ]
       }
     },
-    "/icons/{pluginId}/{iconId}": {
+    "/workflows": {
       "get": {
-        "operationId": "getIcon",
-        "parameters": [
-          {
-            "name": "pluginId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "iconId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Icons"
-        ]
-      }
-    },
-    "/attribute-sources": {
-      "get": {
-        "operationId": "getAllAttributeSources",
+        "operationId": "getAllWorkflows",
         "parameters": [],
         "responses": {
           "200": {
@@ -294,29 +263,33 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AttributeSource"
+                    "$ref": "#/components/schemas/Workflow"
                   }
                 }
               }
             }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
           }
         },
         "summary": "",
         "tags": [
-          "AttributeSources"
+          "Workflows"
         ]
-      }
-    },
-    "/attribute-sources/order": {
-      "post": {
-        "operationId": "setAttributeSourceOrder",
+      },
+      "put": {
+        "operationId": "createWorkflow",
         "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AttributeSourceOrderDto"
+                "$ref": "#/components/schemas/CreateWorkflowDto"
               }
             }
           }
@@ -327,65 +300,364 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AttributeSource"
-                  }
+                  "$ref": "#/components/schemas/Workflow"
                 }
               }
             }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
           }
         },
         "summary": "",
         "tags": [
-          "AttributeSources"
+          "Workflows"
         ]
       }
     },
-    "/resources/{dir}/{file}": {
+    "/workflows/{uuid}": {
       "get": {
-        "operationId": "get",
+        "operationId": "getWorkflow",
         "parameters": [
           {
-            "name": "dir",
+            "name": "uuid",
             "required": true,
             "in": "path",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "file",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "width",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "height",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "integer"
             }
           }
         ],
         "responses": {
           "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workflow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
             "description": ""
           }
         },
+        "summary": "",
         "tags": [
-          "Resources"
+          "Workflows"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteWorkflow",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Workflows"
+        ]
+      }
+    },
+    "/workflows/{uuid}/trigger": {
+      "put": {
+        "operationId": "addWorkflowTrigger",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddWorkflowStepDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workflow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Workflows"
+        ]
+      }
+    },
+    "/workflows/{uuid}/step": {
+      "post": {
+        "operationId": "addWorkflowStep",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddWorkflowStepDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workflow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Workflows"
+        ]
+      }
+    },
+    "/workflows/{workflowUuid}/step/{stepUuid}": {
+      "delete": {
+        "operationId": "deleteWorkflowStep",
+        "parameters": [
+          {
+            "name": "workflowUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stepUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workflow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Workflows"
+        ]
+      },
+      "patch": {
+        "operationId": "updateWorkflowStepOptions",
+        "parameters": [
+          {
+            "name": "workflowUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "stepUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkflowStepOptionsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workflow"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Workflows"
+        ]
+      }
+    },
+    "/workflow-steps/triggers": {
+      "get": {
+        "operationId": "getAllWorkflowTriggers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowStepDefinition"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "WorkflowSteps"
+        ]
+      }
+    },
+    "/workflow-steps/steps": {
+      "get": {
+        "operationId": "getAllWorkflowSteps",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkflowStepDefinition"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "WorkflowSteps"
         ]
       }
     },
@@ -533,6 +805,144 @@
         "summary": "",
         "tags": [
           "Users"
+        ]
+      }
+    },
+    "/icons/{pluginId}/{iconId}": {
+      "get": {
+        "operationId": "getIcon",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "iconId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Icons"
+        ]
+      }
+    },
+    "/attribute-sources": {
+      "get": {
+        "operationId": "getAllAttributeSources",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttributeSource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "AttributeSources"
+        ]
+      }
+    },
+    "/attribute-sources/order": {
+      "post": {
+        "operationId": "setAttributeSourceOrder",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttributeSourceOrderDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttributeSource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "AttributeSources"
+        ]
+      }
+    },
+    "/resources/{dir}/{file}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "dir",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "width",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "height",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Resources"
         ]
       }
     },
@@ -3177,52 +3587,460 @@
           "subTask"
         ]
       },
-      "AttributeSource": {
+      "StringWorkflowStepOptionValue": {
         "type": "object",
         "properties": {
-          "pluginId": {
+          "id": {
             "type": "string"
           },
-          "sourceId": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "BooleanWorkflowStepOptionValue": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "value": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "IntegerWorkflowStepOptionValue": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "value": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "DecimalWorkflowStepOptionValue": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "WorkspaceStepOptionEnumItem": {
+        "type": "object",
+        "properties": {
+          "id": {
             "type": "string"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "languageKey": {
+            "type": "string",
+            "nullable": true
           }
         },
         "required": [
-          "pluginId",
-          "sourceId",
-          "name"
+          "id",
+          "name",
+          "languageKey"
         ]
       },
-      "OrderedAttributeSourceDto": {
+      "EnumWorkflowStepOptionValue": {
         "type": "object",
         "properties": {
-          "pluginId": {
+          "id": {
             "type": "string"
           },
-          "sourceId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "pluginId",
-          "sourceId"
-        ]
-      },
-      "AttributeSourceOrderDto": {
-        "type": "object",
-        "properties": {
-          "sources": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "enum"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          },
+          "options": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/OrderedAttributeSourceDto"
+              "$ref": "#/components/schemas/WorkspaceStepOptionEnumItem"
             }
           }
         },
         "required": [
-          "sources"
+          "id",
+          "type",
+          "value",
+          "options"
+        ]
+      },
+      "WorkflowStepType": {
+        "type": "string",
+        "enum": [
+          "trigger",
+          "step"
+        ]
+      },
+      "WorkflowStep": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "workflowUuid": {
+            "type": "string"
+          },
+          "stepType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowStepType"
+              }
+            ]
+          },
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stepId": {
+            "type": "string"
+          },
+          "loaded": {
+            "type": "boolean"
+          },
+          "options": {
+            "nullable": true,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StringWorkflowStepOptionValue"
+                },
+                {
+                  "$ref": "#/components/schemas/BooleanWorkflowStepOptionValue"
+                },
+                {
+                  "$ref": "#/components/schemas/IntegerWorkflowStepOptionValue"
+                },
+                {
+                  "$ref": "#/components/schemas/DecimalWorkflowStepOptionValue"
+                },
+                {
+                  "$ref": "#/components/schemas/EnumWorkflowStepOptionValue"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/StringWorkflowStepOptionValue",
+                  "boolean": "#/components/schemas/BooleanWorkflowStepOptionValue",
+                  "integer": "#/components/schemas/IntegerWorkflowStepOptionValue",
+                  "decimal": "#/components/schemas/DecimalWorkflowStepOptionValue",
+                  "enum": "#/components/schemas/EnumWorkflowStepOptionValue"
+                }
+              }
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "uuid",
+          "workflowUuid",
+          "stepType",
+          "pluginId",
+          "stepId",
+          "loaded",
+          "options"
+        ]
+      },
+      "Workflow": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dateCreated": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "steps": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowStep"
+            }
+          }
+        },
+        "required": [
+          "uuid",
+          "name",
+          "dateCreated",
+          "steps"
+        ]
+      },
+      "CreateWorkflowDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "AddWorkflowStepDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stepId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "stepId"
+        ]
+      },
+      "StringWorkflowStepOptionValueDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "EnumWorkflowStepOptionValueDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "enum"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "BooleanWorkflowStepOptionValueDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "value": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "IntegerWorkflowStepOptionValueDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "value": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "DecimalWorkflowStepOptionValueDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "value"
+        ]
+      },
+      "UpdateWorkflowStepOptionsDto": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StringWorkflowStepOptionValueDto"
+                },
+                {
+                  "$ref": "#/components/schemas/EnumWorkflowStepOptionValueDto"
+                },
+                {
+                  "$ref": "#/components/schemas/BooleanWorkflowStepOptionValueDto"
+                },
+                {
+                  "$ref": "#/components/schemas/IntegerWorkflowStepOptionValueDto"
+                },
+                {
+                  "$ref": "#/components/schemas/DecimalWorkflowStepOptionValueDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/StringWorkflowStepOptionValueDto",
+                  "enum": "#/components/schemas/EnumWorkflowStepOptionValueDto",
+                  "boolean": "#/components/schemas/BooleanWorkflowStepOptionValueDto",
+                  "integer": "#/components/schemas/IntegerWorkflowStepOptionValueDto",
+                  "decimal": "#/components/schemas/DecimalWorkflowStepOptionValueDto"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "options"
+        ]
+      },
+      "WorkflowStepDefinition": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "stepId": {
+            "type": "string"
+          },
+          "stepType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WorkflowStepType"
+              }
+            ]
+          }
+        },
+        "required": [
+          "pluginId",
+          "stepId",
+          "stepType"
         ]
       },
       "LoginDto": {
@@ -3651,6 +4469,54 @@
           "filterGroups",
           "tracks",
           "trackCount"
+        ]
+      },
+      "AttributeSource": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "sourceId",
+          "name"
+        ]
+      },
+      "OrderedAttributeSourceDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "sourceId"
+        ]
+      },
+      "AttributeSourceOrderDto": {
+        "type": "object",
+        "properties": {
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderedAttributeSourceDto"
+            }
+          }
+        },
+        "required": [
+          "sources"
         ]
       },
       "IdentifierDependency": {
