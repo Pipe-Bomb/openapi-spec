@@ -4745,6 +4745,24 @@
           "children"
         ]
       },
+      "ParagraphConfigNode": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "paragraph"
+            ]
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "content"
+        ]
+      },
       "PluginConfig": {
         "type": "object",
         "properties": {
@@ -4758,6 +4776,9 @@
               },
               {
                 "$ref": "#/components/schemas/SectionConfigNode"
+              },
+              {
+                "$ref": "#/components/schemas/ParagraphConfigNode"
               }
             ]
           }
