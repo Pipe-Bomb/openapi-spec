@@ -1,6 +1,20 @@
 {
   "openapi": "3.1.0",
   "paths": {
+    "/": {
+      "get": {
+        "operationId": "get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "App"
+        ]
+      }
+    },
     "/libraries": {
       "get": {
         "operationId": "getAllLibraries",
@@ -530,6 +544,37 @@
         ]
       }
     },
+    "/users": {
+      "get": {
+        "operationId": "getAllUsers",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
     "/users/login": {
       "post": {
         "operationId": "loginUser",
@@ -760,6 +805,12 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
           }
         },
         "summary": "",
@@ -793,6 +844,12 @@
         },
         "responses": {
           "204": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
             "description": ""
           },
           "404": {
@@ -830,7 +887,10 @@
           }
         ],
         "responses": {
-          "200": {
+          "401": {
+            "description": ""
+          },
+          "404": {
             "description": ""
           }
         },
@@ -2950,6 +3010,103 @@
           "Search"
         ]
       }
+    },
+    "/privileges/{userUuid}": {
+      "get": {
+        "operationId": "getUserPrivileges",
+        "parameters": [
+          {
+            "name": "userUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Privilege"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Privileges"
+        ]
+      },
+      "patch": {
+        "operationId": "updateUserPrivileges",
+        "parameters": [
+          {
+            "name": "userUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrivilegesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Privilege"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": ""
+          },
+          "401": {
+            "description": ""
+          },
+          "403": {
+            "description": ""
+          },
+          "404": {
+            "description": ""
+          },
+          "409": {
+            "description": ""
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Privileges"
+        ]
+      }
     }
   },
   "info": {
@@ -3913,19 +4070,35 @@
           "stepType"
         ]
       },
-      "LoginDto": {
+      "Privilege": {
         "type": "object",
         "properties": {
-          "username": {
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
             "type": "string"
           },
-          "password": {
-            "type": "string"
+          "granted": {
+            "type": "boolean"
+          },
+          "includedIn": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "grantedByInclusion": {
+            "type": "boolean"
           }
         },
         "required": [
-          "username",
-          "password"
+          "pluginId",
+          "key",
+          "granted",
+          "includedIn",
+          "grantedByInclusion"
         ]
       },
       "User": {
@@ -3943,12 +4116,20 @@
             "items": {
               "$ref": "#/components/schemas/Playlist"
             }
+          },
+          "privileges": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Privilege"
+            }
           }
         },
         "required": [
           "uuid",
           "username",
-          "playlists"
+          "playlists",
+          "privileges"
         ]
       },
       "PlaylistVisibility": {
@@ -4349,6 +4530,21 @@
           "filterGroups",
           "tracks",
           "trackCount"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "username",
+          "password"
         ]
       },
       "LoadedAttribute": {
@@ -5888,6 +6084,40 @@
           "tracks",
           "artists",
           "albums"
+        ]
+      },
+      "UpdatePrivilegeDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string"
+          },
+          "granted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pluginId",
+          "key",
+          "granted"
+        ]
+      },
+      "UpdatePrivilegesDto": {
+        "type": "object",
+        "properties": {
+          "privileges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdatePrivilegeDto"
+            }
+          }
+        },
+        "required": [
+          "privileges"
         ]
       },
       "AttributeMap": {
