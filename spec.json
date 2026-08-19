@@ -8,6 +8,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -29,6 +39,16 @@
                   "items": {
                     "$ref": "#/components/schemas/PluginLibrary"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -73,7 +93,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -125,7 +162,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -153,10 +207,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -189,10 +267,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -226,13 +328,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -257,13 +390,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -307,16 +471,54 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "409": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -360,16 +562,54 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "409": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -411,13 +651,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -467,13 +738,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -501,10 +803,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -532,10 +858,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -563,10 +913,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -601,7 +975,24 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -635,8 +1026,35 @@
               }
             }
           },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
           "409": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -661,7 +1079,24 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -679,7 +1114,24 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -713,12 +1165,277 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
         "tags": [
           "Users"
+        ]
+      }
+    },
+    "/system-config": {
+      "post": {
+        "operationId": "getSystemConfigOptions",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemConfigKeysDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemConfigOptions"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "SystemConfig"
+        ]
+      },
+      "patch": {
+        "operationId": "updateSystemConfigOptions",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSystemConfigOptionsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemConfigOptions"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "SystemConfig"
+        ]
+      }
+    },
+    "/privileges/{userUuid}": {
+      "get": {
+        "operationId": "getUserPrivileges",
+        "parameters": [
+          {
+            "name": "userUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Privilege"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Privileges"
+        ]
+      },
+      "patch": {
+        "operationId": "updateUserPrivileges",
+        "parameters": [
+          {
+            "name": "userUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePrivilegesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Privilege"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Privileges"
         ]
       }
     },
@@ -733,6 +1450,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AllAttributes"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -777,13 +1504,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -807,10 +1565,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -847,16 +1629,54 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "409": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -888,10 +1708,34 @@
         ],
         "responses": {
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -913,6 +1757,16 @@
                   "items": {
                     "$ref": "#/components/schemas/AttributeSource"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -948,6 +1802,16 @@
                   "items": {
                     "$ref": "#/components/schemas/AttributeSource"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -999,6 +1863,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1020,6 +1894,16 @@
                   "items": {
                     "$ref": "#/components/schemas/Identifier"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -1100,10 +1984,34 @@
             }
           },
           "404": {
-            "description": "Library or Track not found"
+            "description": "Library or Track not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "416": {
-            "description": "Requested Range Not Satisfiable"
+            "description": "Requested Range Not Satisfiable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1127,6 +2035,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1158,6 +2076,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1179,6 +2107,16 @@
                   "items": {
                     "type": "string"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -1213,6 +2151,16 @@
                 }
               }
             }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1235,6 +2183,16 @@
                 }
               }
             }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1254,6 +2212,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserConfigs"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -1290,7 +2258,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1332,7 +2317,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1374,10 +2376,34 @@
             }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1427,10 +2453,34 @@
             }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1453,6 +2503,16 @@
                   "items": {
                     "$ref": "#/components/schemas/EphemeralSource"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -1485,6 +2545,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EphemeralSearchResults"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -1528,6 +2598,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -1561,7 +2641,24 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1587,7 +2684,24 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1632,10 +2746,34 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1680,13 +2818,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1711,13 +2880,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1754,13 +2954,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1804,13 +3035,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1857,13 +3119,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1905,6 +3198,16 @@
                 }
               }
             }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1941,13 +3244,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -1984,13 +3318,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2015,13 +3380,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2066,13 +3462,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2105,13 +3532,44 @@
             "description": ""
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2161,7 +3619,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2194,6 +3669,16 @@
                   "items": {
                     "$ref": "#/components/schemas/Track"
                   }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -2249,7 +3734,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2299,13 +3801,44 @@
             }
           },
           "401": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "403": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2358,7 +3891,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2374,6 +3924,16 @@
         "responses": {
           "200": {
             "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -2406,7 +3966,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2438,7 +4015,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2488,7 +4082,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2536,7 +4147,24 @@
             }
           },
           "400": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2573,7 +4201,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2615,10 +4260,34 @@
             }
           },
           "400": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2648,6 +4317,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ArtistsSearchResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -2687,7 +4366,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2721,7 +4417,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2771,7 +4484,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2819,7 +4549,24 @@
             }
           },
           "400": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2856,7 +4603,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2898,10 +4662,34 @@
             }
           },
           "400": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -2931,6 +4719,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AlbumsSearchResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -2970,7 +4768,24 @@
             }
           },
           "404": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
@@ -3003,108 +4818,21 @@
                 }
               }
             }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           }
         },
         "summary": "",
         "tags": [
           "Search"
-        ]
-      }
-    },
-    "/privileges/{userUuid}": {
-      "get": {
-        "operationId": "getUserPrivileges",
-        "parameters": [
-          {
-            "name": "userUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Privilege"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Privileges"
-        ]
-      },
-      "patch": {
-        "operationId": "updateUserPrivileges",
-        "parameters": [
-          {
-            "name": "userUuid",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePrivilegesDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Privilege"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": ""
-          },
-          "401": {
-            "description": ""
-          },
-          "403": {
-            "description": ""
-          },
-          "404": {
-            "description": ""
-          },
-          "409": {
-            "description": ""
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Privileges"
         ]
       }
     }
@@ -4545,6 +6273,372 @@
         "required": [
           "username",
           "password"
+        ]
+      },
+      "SystemConfigKeysDto": {
+        "type": "object",
+        "properties": {
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "keys"
+        ]
+      },
+      "StringSystemConfigOption": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "supportsMultiple": {
+            "type": "boolean"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "minLength": {
+            "type": "integer",
+            "nullable": true
+          },
+          "maxLength": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "supportsMultiple",
+          "values",
+          "minLength",
+          "maxLength"
+        ]
+      },
+      "IntegerSystemConfigOption": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "supportsMultiple": {
+            "type": "boolean"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "min": {
+            "type": "integer",
+            "nullable": true
+          },
+          "max": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "supportsMultiple",
+          "values",
+          "min",
+          "max"
+        ]
+      },
+      "DecimalSystemConfigOption": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "supportsMultiple": {
+            "type": "boolean"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "min": {
+            "type": "number",
+            "nullable": true
+          },
+          "max": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "supportsMultiple",
+          "values",
+          "min",
+          "max"
+        ]
+      },
+      "BooleanSystemConfigOption": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "supportsMultiple": {
+            "type": "boolean"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "supportsMultiple",
+          "values"
+        ]
+      },
+      "SystemConfigOptions": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StringSystemConfigOption"
+                },
+                {
+                  "$ref": "#/components/schemas/IntegerSystemConfigOption"
+                },
+                {
+                  "$ref": "#/components/schemas/DecimalSystemConfigOption"
+                },
+                {
+                  "$ref": "#/components/schemas/BooleanSystemConfigOption"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/StringSystemConfigOption",
+                  "boolean": "#/components/schemas/IntegerSystemConfigOption",
+                  "integer": "#/components/schemas/DecimalSystemConfigOption",
+                  "decimal": "#/components/schemas/BooleanSystemConfigOption"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "options"
+        ]
+      },
+      "StringUpdateSystemConfigOptionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "string"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "values"
+        ]
+      },
+      "BooleanUpdateSystemConfigOptionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "boolean"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "values"
+        ]
+      },
+      "IntegerUpdateSystemConfigOptionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "integer"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "values"
+        ]
+      },
+      "DecimalUpdateSystemConfigOptionDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "decimal"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "key",
+          "values"
+        ]
+      },
+      "UpdateSystemConfigOptionsDto": {
+        "type": "object",
+        "properties": {
+          "options": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/StringUpdateSystemConfigOptionDto"
+                },
+                {
+                  "$ref": "#/components/schemas/BooleanUpdateSystemConfigOptionDto"
+                },
+                {
+                  "$ref": "#/components/schemas/IntegerUpdateSystemConfigOptionDto"
+                },
+                {
+                  "$ref": "#/components/schemas/DecimalUpdateSystemConfigOptionDto"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "type",
+                "mapping": {
+                  "string": "#/components/schemas/StringUpdateSystemConfigOptionDto",
+                  "boolean": "#/components/schemas/BooleanUpdateSystemConfigOptionDto",
+                  "integer": "#/components/schemas/IntegerUpdateSystemConfigOptionDto",
+                  "decimal": "#/components/schemas/DecimalUpdateSystemConfigOptionDto"
+                }
+              }
+            }
+          }
+        },
+        "required": [
+          "options"
+        ]
+      },
+      "UpdatePrivilegeDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string"
+          },
+          "granted": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pluginId",
+          "key",
+          "granted"
+        ]
+      },
+      "UpdatePrivilegesDto": {
+        "type": "object",
+        "properties": {
+          "privileges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdatePrivilegeDto"
+            }
+          }
+        },
+        "required": [
+          "privileges"
         ]
       },
       "LoadedAttribute": {
@@ -6086,38 +8180,23 @@
           "albums"
         ]
       },
-      "UpdatePrivilegeDto": {
+      "PipeBombError": {
         "type": "object",
         "properties": {
-          "pluginId": {
-            "type": "string",
-            "nullable": true
-          },
-          "key": {
+          "error": {
             "type": "string"
           },
-          "granted": {
-            "type": "boolean"
+          "message": {
+            "type": "string"
+          },
+          "statusCode": {
+            "type": "integer"
           }
         },
         "required": [
-          "pluginId",
-          "key",
-          "granted"
-        ]
-      },
-      "UpdatePrivilegesDto": {
-        "type": "object",
-        "properties": {
-          "privileges": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UpdatePrivilegeDto"
-            }
-          }
-        },
-        "required": [
-          "privileges"
+          "error",
+          "message",
+          "statusCode"
         ]
       },
       "AttributeMap": {
