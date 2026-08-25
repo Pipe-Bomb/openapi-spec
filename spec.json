@@ -5132,6 +5132,46 @@
           "Search"
         ]
       }
+    },
+    "/setup": {
+      "get": {
+        "operationId": "getSetupStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "needsSetup": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "needsSetup"
+                  ]
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Setup"
+        ]
+      }
     }
   },
   "info": {
