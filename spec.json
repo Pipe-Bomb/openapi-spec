@@ -5356,6 +5356,230 @@
           "Setup"
         ]
       }
+    },
+    "/marketplaces": {
+      "get": {
+        "operationId": "listMarketplaces",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Marketplace"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Marketplaces"
+        ]
+      },
+      "post": {
+        "operationId": "addMarketplace",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddMarketplaceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Marketplace"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Marketplaces"
+        ]
+      }
+    },
+    "/marketplaces/{uuid}": {
+      "delete": {
+        "operationId": "removeMarketplace",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Marketplaces"
+        ]
+      }
+    },
+    "/marketplaces/plugins": {
+      "get": {
+        "operationId": "listMarketplacePlugins",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MarketplacePlugin"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Marketplaces"
+        ]
+      }
     }
   },
   "info": {
@@ -5390,7 +5614,17 @@
       },
       "InstallPluginDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ]
       },
       "PluginLibrary": {
         "type": "object",
@@ -8787,6 +9021,100 @@
           "tracks",
           "artists",
           "albums"
+        ]
+      },
+      "Marketplace": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "pluginCount": {
+            "type": "number",
+            "nullable": true
+          },
+          "reachable": {
+            "type": "boolean"
+          },
+          "addedAt": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "uuid",
+          "url",
+          "name",
+          "pluginCount",
+          "reachable",
+          "addedAt"
+        ]
+      },
+      "AddMarketplaceDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "MarketplacePlugin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "authorUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "repository": {
+            "type": "string"
+          },
+          "marketplaceUuid": {
+            "type": "string"
+          },
+          "marketplaceName": {
+            "type": "string"
+          },
+          "installed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "authorName",
+          "authorUrl",
+          "url",
+          "repository",
+          "marketplaceUuid",
+          "marketplaceName",
+          "installed"
         ]
       },
       "PipeBombError": {
