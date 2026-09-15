@@ -2151,6 +2151,79 @@
         "tags": [
           "Identifiers"
         ]
+      },
+      "post": {
+        "operationId": "updateIdentifiers",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateIdentifiersDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Identifier"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Identifiers"
+        ]
       }
     },
     "/streaming/{id}/stream": {
@@ -7830,6 +7903,22 @@
           "sources"
         ]
       },
+      "IdentifierType": {
+        "type": "string",
+        "enum": [
+          "track",
+          "artist",
+          "album"
+        ]
+      },
+      "IdentifierTarget": {
+        "type": "string",
+        "enum": [
+          "track",
+          "artist",
+          "album"
+        ]
+      },
       "IdentifierDependency": {
         "type": "object",
         "properties": {
@@ -7855,6 +7944,21 @@
           "identifierId": {
             "type": "string"
           },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentifierType"
+              }
+            ]
+          },
+          "target": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentifierTarget"
+              }
+            ]
+          },
           "dependencies": {
             "type": "array",
             "items": {
@@ -7866,14 +7970,62 @@
             "items": {
               "$ref": "#/components/schemas/IdentifierDependency"
             }
+          },
+          "disabled": {
+            "type": "boolean"
           }
         },
         "required": [
           "pluginId",
           "identifierId",
+          "type",
+          "target",
           "dependencies",
-          "softDependencies"
+          "softDependencies",
+          "disabled"
         ]
+      },
+      "IdentifierKeyDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "identifierId": {
+            "type": "string"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IdentifierType"
+              }
+            ]
+          }
+        },
+        "required": [
+          "pluginId",
+          "identifierId",
+          "type"
+        ]
+      },
+      "UpdateIdentifiersDto": {
+        "type": "object",
+        "properties": {
+          "enable": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentifierKeyDto"
+            }
+          },
+          "disable": {
+            "default": [],
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdentifierKeyDto"
+            }
+          }
+        }
       },
       "StringSearchAttributeDto": {
         "type": "object",
