@@ -4322,6 +4322,137 @@
         ]
       }
     },
+    "/playback-history/me": {
+      "get": {
+        "operationId": "getOwnPlaybackHistory",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pluginId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientName",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlaybackHistoryPage"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "PlaybackHistory"
+        ]
+      },
+      "post": {
+        "operationId": "reportPlayback",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportPlaybackDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "PlaybackHistory"
+        ]
+      }
+    },
     "/tracks/{pluginId}/{libraryId}/{trackId}": {
       "get": {
         "operationId": "getTrack",
@@ -9300,6 +9431,90 @@
         },
         "required": [
           "role"
+        ]
+      },
+      "PlaybackHistoryEntry": {
+        "type": "object",
+        "properties": {
+          "trackUuid": {
+            "type": "string"
+          },
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientName": {
+            "type": "string"
+          },
+          "datePlayed": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "dateRecorded": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "track": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Track"
+              }
+            ]
+          }
+        },
+        "required": [
+          "trackUuid",
+          "pluginId",
+          "clientName",
+          "datePlayed",
+          "dateRecorded",
+          "track"
+        ]
+      },
+      "PlaybackHistoryPage": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaybackHistoryEntry"
+            }
+          },
+          "total": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "entries",
+          "total"
+        ]
+      },
+      "ReportPlaybackDto": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "libraryId": {
+            "type": "string"
+          },
+          "trackId": {
+            "type": "string"
+          },
+          "clientName": {
+            "type": "string"
+          },
+          "datePlayed": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "libraryId",
+          "trackId",
+          "clientName"
         ]
       },
       "TrackIdsDto": {
