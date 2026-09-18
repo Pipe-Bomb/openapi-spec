@@ -145,6 +145,131 @@
         ]
       }
     },
+    "/plugins/{name}/check-updates": {
+      "get": {
+        "operationId": "checkPluginUpdates",
+        "parameters": [
+          {
+            "name": "name",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PluginUpdate"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Plugins"
+        ]
+      }
+    },
+    "/plugins/{name}/update": {
+      "post": {
+        "operationId": "updatePlugin",
+        "parameters": [
+          {
+            "name": "name",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoadedPlugin"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Plugins"
+        ]
+      }
+    },
     "/plugins/{name}": {
       "delete": {
         "operationId": "removePlugin",
@@ -5956,12 +6081,23 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "updateStatus": {
+            "type": "string",
+            "enum": [
+              "unsupported",
+              "not_checked",
+              "has_update",
+              "up_to_date",
+              "updating"
+            ]
           }
         },
         "required": [
           "name",
           "version",
-          "description"
+          "description",
+          "updateStatus"
         ]
       },
       "InstallPluginDto": {
@@ -5976,6 +6112,21 @@
         },
         "required": [
           "url"
+        ]
+      },
+      "PluginUpdate": {
+        "type": "object",
+        "properties": {
+          "updatesAvailable": {
+            "type": "boolean"
+          },
+          "commitsBehind": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "updatesAvailable",
+          "commitsBehind"
         ]
       },
       "PluginLibrary": {
