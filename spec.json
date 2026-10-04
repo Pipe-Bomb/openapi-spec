@@ -4601,7 +4601,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedAlbums"
+                }
+              }
+            }
           },
           "401": {
             "description": "",
@@ -5279,7 +5286,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedArtists"
+                }
+              }
+            }
           },
           "401": {
             "description": "",
@@ -5958,7 +5972,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SavedTracks"
+                }
+              }
+            }
           },
           "401": {
             "description": "",
@@ -10439,6 +10460,24 @@
           "clientName"
         ]
       },
+      "SavedAlbums": {
+        "type": "object",
+        "properties": {
+          "albums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Album"
+            }
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "albums",
+          "total"
+        ]
+      },
       "EphemeralSourceDto": {
         "type": "object",
         "properties": {
@@ -10531,6 +10570,24 @@
           "name"
         ]
       },
+      "SavedArtists": {
+        "type": "object",
+        "properties": {
+          "artists": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Artist"
+            }
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "artists",
+          "total"
+        ]
+      },
       "ArtistEphemeralContent": {
         "type": "object",
         "properties": {
@@ -10594,6 +10651,24 @@
         "required": [
           "artists",
           "totalPages"
+        ]
+      },
+      "SavedTracks": {
+        "type": "object",
+        "properties": {
+          "tracks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Track"
+            }
+          },
+          "total": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "tracks",
+          "total"
         ]
       },
       "TrackIdsDto": {
