@@ -4578,30 +4578,22 @@
         ]
       }
     },
-    "/tracks/{pluginId}/{libraryId}/{trackId}": {
+    "/albums/saved": {
       "get": {
-        "operationId": "getTrack",
+        "operationId": "getSavedAlbums",
         "parameters": [
           {
-            "name": "pluginId",
+            "name": "pageSize",
             "required": true,
-            "in": "path",
+            "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "libraryId",
+            "name": "page",
             "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trackId",
-            "required": true,
-            "in": "path",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -4609,16 +4601,9 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Track"
-                }
-              }
-            }
+            "description": ""
           },
-          "404": {
+          "401": {
             "description": "",
             "content": {
               "application/json": {
@@ -4641,24 +4626,14 @@
         },
         "summary": "",
         "tags": [
-          "Tracks"
+          "Albums"
         ]
       }
     },
-    "/tracks": {
-      "post": {
-        "operationId": "getTracks",
+    "/albums/saved/pending": {
+      "get": {
+        "operationId": "getSavedAlbumsPending",
         "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TrackIdsDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "",
@@ -4667,135 +4642,8 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Track"
+                    "$ref": "#/components/schemas/TrackCreationSession"
                   }
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Default error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Tracks"
-        ]
-      }
-    },
-    "/tracks/{pluginId}/{libraryId}/{trackId}/identities": {
-      "get": {
-        "operationId": "getTrackIdentities",
-        "parameters": [
-          {
-            "name": "pluginId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "libraryId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trackId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Identity"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Default error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Tracks"
-        ]
-      }
-    },
-    "/tracks/{pluginId}/{libraryId}/{trackId}/audio": {
-      "get": {
-        "operationId": "createTrackAudioSession",
-        "parameters": [
-          {
-            "name": "pluginId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "libraryId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trackId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StreamInstance"
                 }
               }
             }
@@ -4810,7 +4658,293 @@
               }
             }
           },
-          "403": {
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      }
+    },
+    "/albums/{albumUuid}": {
+      "get": {
+        "operationId": "getAlbum",
+        "parameters": [
+          {
+            "name": "albumUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Album"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      }
+    },
+    "/albums/{pluginId}/{identifierId}/{identity}": {
+      "get": {
+        "operationId": "getAlbumByIdentity",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identity",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Album"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      },
+      "post": {
+        "operationId": "getAlbumEphemeralContentByIdentity",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identity",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlbumEphemeralContent"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      }
+    },
+    "/albums/{albumUuid}/ephemeral": {
+      "get": {
+        "operationId": "getAlbumEphemeralSources",
+        "parameters": [
+          {
+            "name": "albumUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EphemeralSource"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      },
+      "post": {
+        "operationId": "getAlbumEphemeralContent",
+        "parameters": [
+          {
+            "name": "albumUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EphemeralSourceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlbumEphemeralContent"
+                }
+              }
+            }
+          },
+          "400": {
             "description": "",
             "content": {
               "application/json": {
@@ -4843,32 +4977,58 @@
         },
         "summary": "",
         "tags": [
-          "Tracks"
+          "Albums"
         ]
       }
     },
-    "/tracks/{pluginId}/{libraryId}/{trackId}/urls": {
+    "/albums": {
+      "post": {
+        "operationId": "searchAlbums",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbumsSearchDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlbumsSearchResponse"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      }
+    },
+    "/albums/{albumUuid}/urls": {
       "get": {
-        "operationId": "getTrackExternalUrls",
+        "operationId": "getAlbumExternalUrls",
         "parameters": [
           {
-            "name": "pluginId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "libraryId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trackId",
+            "name": "albumUuid",
             "required": true,
             "in": "path",
             "schema": {
@@ -4913,17 +5073,46 @@
         },
         "summary": "",
         "tags": [
-          "Tracks"
+          "Albums"
         ]
       }
     },
-    "/docs/json": {
-      "get": {
-        "operationId": "getJson",
-        "parameters": [],
+    "/albums/{albumUuid}/save": {
+      "put": {
+        "operationId": "saveAlbum",
+        "parameters": [
+          {
+            "name": "albumUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
-          "200": {
+          "204": {
             "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
           },
           "5XX": {
             "description": "Default error response",
@@ -4936,8 +5125,186 @@
             }
           }
         },
+        "summary": "",
         "tags": [
-          "Docs"
+          "Albums"
+        ]
+      },
+      "delete": {
+        "operationId": "unsaveAlbum",
+        "parameters": [
+          {
+            "name": "albumUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      }
+    },
+    "/albums/{pluginId}/{identifierId}/{identity}/save": {
+      "put": {
+        "operationId": "saveEphemeralAlbum",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identifierId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "identity",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Albums"
+        ]
+      }
+    },
+    "/artists/saved": {
+      "get": {
+        "operationId": "getSavedArtists",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Artists"
         ]
       }
     },
@@ -5392,12 +5759,12 @@
         ]
       }
     },
-    "/albums/{albumUuid}": {
-      "get": {
-        "operationId": "getAlbum",
+    "/artists/{artistUuid}/save": {
+      "put": {
+        "operationId": "saveArtist",
         "parameters": [
           {
-            "name": "albumUuid",
+            "name": "artistUuid",
             "required": true,
             "in": "path",
             "schema": {
@@ -5406,12 +5773,15 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
+            "description": ""
+          },
+          "401": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Album"
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
@@ -5439,78 +5809,65 @@
         },
         "summary": "",
         "tags": [
-          "Albums"
-        ]
-      }
-    },
-    "/albums/{pluginId}/{identifierId}/{identity}": {
-      "get": {
-        "operationId": "getAlbumByIdentity",
-        "parameters": [
-          {
-            "name": "pluginId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "identifierId",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "identity",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Album"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Default error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Albums"
+          "Artists"
         ]
       },
-      "post": {
-        "operationId": "getAlbumEphemeralContentByIdentity",
+      "delete": {
+        "operationId": "unsaveArtist",
+        "parameters": [
+          {
+            "name": "artistUuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Artists"
+        ]
+      }
+    },
+    "/artists/{pluginId}/{identifierId}/{identity}/save": {
+      "put": {
+        "operationId": "saveEphemeralArtist",
         "parameters": [
           {
             "name": "pluginId",
@@ -5538,17 +5895,20 @@
           }
         ],
         "responses": {
-          "200": {
+          "204": {
+            "description": ""
+          },
+          "401": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AlbumEphemeralContent"
+                  "$ref": "#/components/schemas/PipeBombError"
                 }
               }
             }
           },
-          "400": {
+          "404": {
             "description": "",
             "content": {
               "application/json": {
@@ -5571,16 +5931,241 @@
         },
         "summary": "",
         "tags": [
-          "Albums"
+          "Artists"
         ]
       }
     },
-    "/albums/{albumUuid}/ephemeral": {
+    "/tracks/saved": {
       "get": {
-        "operationId": "getAlbumEphemeralSources",
+        "operationId": "getSavedTracks",
         "parameters": [
           {
-            "name": "albumUuid",
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
+    "/tracks/saved/pending": {
+      "get": {
+        "operationId": "getSavedTracksPending",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrackCreationSession"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
+    "/tracks/{pluginId}/{libraryId}/{trackId}": {
+      "get": {
+        "operationId": "getTrack",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Track"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
+    "/tracks": {
+      "post": {
+        "operationId": "getTracks",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrackIdsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Track"
+                  }
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
+    "/tracks/{pluginId}/{libraryId}/{trackId}/identities": {
+      "get": {
+        "operationId": "getTrackIdentities",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
             "required": true,
             "in": "path",
             "schema": {
@@ -5596,7 +6181,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/EphemeralSource"
+                    "$ref": "#/components/schemas/Identity"
                   }
                 }
               }
@@ -5625,14 +6210,32 @@
         },
         "summary": "",
         "tags": [
-          "Albums"
+          "Tracks"
         ]
-      },
-      "post": {
-        "operationId": "getAlbumEphemeralContent",
+      }
+    },
+    "/tracks/{pluginId}/{libraryId}/{trackId}/audio": {
+      "get": {
+        "operationId": "createTrackAudioSession",
         "parameters": [
           {
-            "name": "albumUuid",
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
             "required": true,
             "in": "path",
             "schema": {
@@ -5640,28 +6243,28 @@
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EphemeralSourceDto"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AlbumEphemeralContent"
+                  "$ref": "#/components/schemas/StreamInstance"
                 }
               }
             }
           },
-          "400": {
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "403": {
             "description": "",
             "content": {
               "application/json": {
@@ -5694,58 +6297,32 @@
         },
         "summary": "",
         "tags": [
-          "Albums"
+          "Tracks"
         ]
       }
     },
-    "/albums": {
-      "post": {
-        "operationId": "searchAlbums",
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AlbumsSearchDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AlbumsSearchResponse"
-                }
-              }
-            }
-          },
-          "5XX": {
-            "description": "Default error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Albums"
-        ]
-      }
-    },
-    "/albums/{albumUuid}/urls": {
+    "/tracks/{pluginId}/{libraryId}/{trackId}/urls": {
       "get": {
-        "operationId": "getAlbumExternalUrls",
+        "operationId": "getTrackExternalUrls",
         "parameters": [
           {
-            "name": "albumUuid",
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
             "required": true,
             "in": "path",
             "schema": {
@@ -5790,7 +6367,172 @@
         },
         "summary": "",
         "tags": [
-          "Albums"
+          "Tracks"
+        ]
+      }
+    },
+    "/tracks/{pluginId}/{libraryId}/{trackId}/save": {
+      "put": {
+        "operationId": "saveTrack",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      },
+      "delete": {
+        "operationId": "unsaveTrack",
+        "parameters": [
+          {
+            "name": "pluginId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "libraryId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "trackId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracks"
+        ]
+      }
+    },
+    "/docs/json": {
+      "get": {
+        "operationId": "getJson",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Docs"
         ]
       }
     },
@@ -6476,6 +7218,10 @@
             "items": {
               "$ref": "#/components/schemas/AlbumArtist"
             }
+          },
+          "bookmarked": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "required": [
@@ -6483,7 +7229,8 @@
           "attributes",
           "identities",
           "tracks",
-          "artists"
+          "artists",
+          "bookmarked"
         ]
       },
       "Artist": {
@@ -6521,6 +7268,10 @@
             "items": {
               "$ref": "#/components/schemas/Album"
             }
+          },
+          "bookmarked": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "required": [
@@ -6528,7 +7279,8 @@
           "attributes",
           "identities",
           "tracks",
-          "albums"
+          "albums",
+          "bookmarked"
         ]
       },
       "TrackArtist": {
@@ -6554,6 +7306,9 @@
       "Track": {
         "type": "object",
         "properties": {
+          "uuid": {
+            "type": "string"
+          },
           "trackId": {
             "type": "string"
           },
@@ -6598,9 +7353,14 @@
             "items": {
               "$ref": "#/components/schemas/Identity"
             }
+          },
+          "bookmarked": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "required": [
+          "uuid",
           "trackId",
           "pluginId",
           "libraryId",
@@ -6609,7 +7369,8 @@
           "artists",
           "albums",
           "attributes",
-          "identities"
+          "identities",
+          "bookmarked"
         ]
       },
       "LibraryFindResponse": {
@@ -7542,7 +8303,7 @@
             "type": "string"
           },
           "ownerUuid": {
-            "type": "object",
+            "type": "string",
             "nullable": true
           },
           "owner": {
@@ -8955,6 +9716,10 @@
       "EphemeralTrack": {
         "type": "object",
         "properties": {
+          "uuid": {
+            "type": "string",
+            "nullable": true
+          },
           "trackId": {
             "type": "string"
           },
@@ -8981,15 +9746,21 @@
             "items": {
               "$ref": "#/components/schemas/TrackArtist"
             }
+          },
+          "bookmarked": {
+            "type": "boolean",
+            "nullable": true
           }
         },
         "required": [
+          "uuid",
           "trackId",
           "pluginId",
           "libraryId",
           "title",
           "attributes",
-          "artists"
+          "artists",
+          "bookmarked"
         ]
       },
       "EphemeralSearchResults": {
@@ -9668,41 +10439,77 @@
           "clientName"
         ]
       },
-      "TrackIdsDto": {
+      "EphemeralSourceDto": {
         "type": "object",
         "properties": {
+          "pluginId": {
+            "type": "string"
+          },
+          "sourceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pluginId",
+          "sourceId"
+        ]
+      },
+      "AlbumEphemeralContent": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/EphemeralSource"
+          },
           "tracks": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TrackIdDto"
+              "$ref": "#/components/schemas/EphemeralTrack"
             }
           }
         },
         "required": [
+          "source",
           "tracks"
         ]
       },
-      "StreamInstance": {
+      "AlbumsSearchDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30
           },
-          "baseUrl": {
-            "type": "string"
+          "page": {
+            "type": "integer",
+            "minimum": 1
           },
-          "type": {
-            "type": "string",
-            "enum": [
-              "hls",
-              "stream"
-            ]
+          "sort": {
+            "$ref": "#/components/schemas/SearchSortDto"
           }
         },
         "required": [
-          "id",
-          "baseUrl",
-          "type"
+          "pageSize",
+          "page"
+        ]
+      },
+      "AlbumsSearchResponse": {
+        "type": "object",
+        "properties": {
+          "albums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Album"
+            }
+          },
+          "totalPages": {
+            "type": "number",
+            "nullable": true
+          }
+        },
+        "required": [
+          "albums",
+          "totalPages"
         ]
       },
       "ExternalUrl": {
@@ -9722,21 +10529,6 @@
           "url",
           "iconUrl",
           "name"
-        ]
-      },
-      "EphemeralSourceDto": {
-        "type": "object",
-        "properties": {
-          "pluginId": {
-            "type": "string"
-          },
-          "sourceId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "pluginId",
-          "sourceId"
         ]
       },
       "ArtistEphemeralContent": {
@@ -9804,62 +10596,41 @@
           "totalPages"
         ]
       },
-      "AlbumEphemeralContent": {
+      "TrackIdsDto": {
         "type": "object",
         "properties": {
-          "source": {
-            "$ref": "#/components/schemas/EphemeralSource"
-          },
           "tracks": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/EphemeralTrack"
+              "$ref": "#/components/schemas/TrackIdDto"
             }
           }
         },
         "required": [
-          "source",
           "tracks"
         ]
       },
-      "AlbumsSearchDto": {
+      "StreamInstance": {
         "type": "object",
         "properties": {
-          "pageSize": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 30
+          "id": {
+            "type": "string"
           },
-          "page": {
-            "type": "integer",
-            "minimum": 1
+          "baseUrl": {
+            "type": "string"
           },
-          "sort": {
-            "$ref": "#/components/schemas/SearchSortDto"
+          "type": {
+            "type": "string",
+            "enum": [
+              "hls",
+              "stream"
+            ]
           }
         },
         "required": [
-          "pageSize",
-          "page"
-        ]
-      },
-      "AlbumsSearchResponse": {
-        "type": "object",
-        "properties": {
-          "albums": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Album"
-            }
-          },
-          "totalPages": {
-            "type": "number",
-            "nullable": true
-          }
-        },
-        "required": [
-          "albums",
-          "totalPages"
+          "id",
+          "baseUrl",
+          "type"
         ]
       },
       "Marketplace": {
