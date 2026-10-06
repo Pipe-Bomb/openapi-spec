@@ -3241,6 +3241,56 @@
         ]
       }
     },
+    "/ephemeral/creation-session/{uuid}": {
+      "get": {
+        "operationId": "getCreationSession",
+        "parameters": [
+          {
+            "name": "uuid",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreationSession"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ephemeral"
+        ]
+      }
+    },
     "/playlists": {
       "put": {
         "operationId": "createPlaylist",
@@ -3863,7 +3913,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TrackCreationSession"
+                    "$ref": "#/components/schemas/CreationSession"
                   }
                 }
               }
@@ -4649,7 +4699,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TrackCreationSession"
+                    "$ref": "#/components/schemas/CreationSession"
                   }
                 }
               }
@@ -5221,7 +5271,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreationSession"
+                }
+              }
+            }
           },
           "204": {
             "description": ""
@@ -6020,7 +6077,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TrackCreationSession"
+                    "$ref": "#/components/schemas/CreationSession"
                   }
                 }
               }
@@ -6423,7 +6480,14 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreationSession"
+                }
+              }
+            }
           },
           "204": {
             "description": ""
@@ -9812,6 +9876,29 @@
           "albums"
         ]
       },
+      "CreationSession": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "dateStarted": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "nullable": true
+          }
+        },
+        "required": [
+          "uuid",
+          "dateStarted",
+          "percent"
+        ]
+      },
       "CustomStringAttributeDto": {
         "type": "object",
         "properties": {
@@ -10114,29 +10201,6 @@
       "PlaylistVisibilityDto": {
         "type": "object",
         "properties": {}
-      },
-      "TrackCreationSession": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "dateStarted": {
-            "format": "date-time",
-            "type": "string"
-          },
-          "percent": {
-            "type": "number",
-            "minimum": 0,
-            "maximum": 100,
-            "nullable": true
-          }
-        },
-        "required": [
-          "uuid",
-          "dateStarted",
-          "percent"
-        ]
       },
       "StringSmartFilterDto": {
         "type": "object",
