@@ -2186,63 +2186,6 @@
         ]
       }
     },
-    "/resources/{dir}/{file}": {
-      "get": {
-        "operationId": "get",
-        "parameters": [
-          {
-            "name": "dir",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "file",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "width",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "height",
-            "required": false,
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "5XX": {
-            "description": "Default error response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PipeBombError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Resources"
-        ]
-      }
-    },
     "/identifiers": {
       "get": {
         "operationId": "getAllIdentifiers",
@@ -3205,19 +3148,35 @@
             }
           },
           {
-            "name": "width",
+            "name": "plugin",
             "required": false,
             "in": "query",
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           },
           {
-            "name": "height",
+            "name": "source",
             "required": false,
             "in": "query",
             "schema": {
-              "type": "integer"
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -6621,6 +6580,79 @@
         ]
       }
     },
+    "/resources/{dir}/{file}": {
+      "get": {
+        "operationId": "get",
+        "parameters": [
+          {
+            "name": "dir",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "file",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "plugin",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "source",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "key",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Resources"
+        ]
+      }
+    },
     "/setup": {
       "get": {
         "operationId": "getSetupStatus",
@@ -7025,19 +7057,29 @@
             ]
           },
           "pluginId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "sourceId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
-          "formatted": {
-            "nullable": true,
+          "formatterPluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "formatterSourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "values": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "values": {
+          "formatted": {
+            "nullable": true,
             "type": "array",
             "items": {
               "type": "string"
@@ -7048,8 +7090,10 @@
           "type",
           "pluginId",
           "sourceId",
-          "formatted",
-          "values"
+          "formatterPluginId",
+          "formatterSourceId",
+          "values",
+          "formatted"
         ]
       },
       "BooleanAttribute": {
@@ -7062,10 +7106,26 @@
             ]
           },
           "pluginId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "sourceId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "formatterPluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "formatterSourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
           },
           "formatted": {
             "nullable": true,
@@ -7073,20 +7133,16 @@
             "items": {
               "type": "string"
             }
-          },
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "boolean"
-            }
           }
         },
         "required": [
           "type",
           "pluginId",
           "sourceId",
-          "formatted",
-          "values"
+          "formatterPluginId",
+          "formatterSourceId",
+          "values",
+          "formatted"
         ]
       },
       "DecimalAttribute": {
@@ -7099,10 +7155,26 @@
             ]
           },
           "pluginId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "sourceId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "formatterPluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "formatterSourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
           },
           "formatted": {
             "nullable": true,
@@ -7110,20 +7182,16 @@
             "items": {
               "type": "string"
             }
-          },
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
           }
         },
         "required": [
           "type",
           "pluginId",
           "sourceId",
-          "formatted",
-          "values"
+          "formatterPluginId",
+          "formatterSourceId",
+          "values",
+          "formatted"
         ]
       },
       "IntegerAttribute": {
@@ -7136,10 +7204,26 @@
             ]
           },
           "pluginId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "sourceId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "formatterPluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "formatterSourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
           },
           "formatted": {
             "nullable": true,
@@ -7147,20 +7231,16 @@
             "items": {
               "type": "string"
             }
-          },
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
           }
         },
         "required": [
           "type",
           "pluginId",
           "sourceId",
-          "formatted",
-          "values"
+          "formatterPluginId",
+          "formatterSourceId",
+          "values",
+          "formatted"
         ]
       },
       "Resource": {
@@ -7197,19 +7277,29 @@
             ]
           },
           "pluginId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "sourceId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "formatterPluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "formatterSourceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            }
           },
           "formatted": {
             "nullable": true,
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "values": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Resource"
@@ -7220,8 +7310,10 @@
           "type",
           "pluginId",
           "sourceId",
-          "formatted",
-          "values"
+          "formatterPluginId",
+          "formatterSourceId",
+          "values",
+          "formatted"
         ]
       },
       "Identity": {
