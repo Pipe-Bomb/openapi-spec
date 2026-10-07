@@ -7079,7 +7079,6 @@
             }
           },
           "formatted": {
-            "nullable": true,
             "type": "array",
             "items": {
               "type": "string"
@@ -7128,7 +7127,6 @@
             }
           },
           "formatted": {
-            "nullable": true,
             "type": "array",
             "items": {
               "type": "string"
@@ -7177,7 +7175,6 @@
             }
           },
           "formatted": {
-            "nullable": true,
             "type": "array",
             "items": {
               "type": "string"
@@ -7226,7 +7223,6 @@
             }
           },
           "formatted": {
-            "nullable": true,
             "type": "array",
             "items": {
               "type": "string"
@@ -7299,7 +7295,6 @@
             }
           },
           "formatted": {
-            "nullable": true,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Resource"
