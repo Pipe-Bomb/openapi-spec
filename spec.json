@@ -3345,6 +3345,51 @@
         ]
       }
     },
+    "/playlists/public": {
+      "get": {
+        "operationId": "getPublicPlaylists",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Playlist"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Default error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PipeBombError"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Playlists"
+        ]
+      }
+    },
     "/playlists/{uuid}": {
       "get": {
         "operationId": "getPlaylist",
@@ -8038,68 +8083,6 @@
           "stepType"
         ]
       },
-      "Privilege": {
-        "type": "object",
-        "properties": {
-          "pluginId": {
-            "type": "string",
-            "nullable": true
-          },
-          "key": {
-            "type": "string"
-          },
-          "granted": {
-            "type": "boolean"
-          },
-          "includedIn": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "grantedByInclusion": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "pluginId",
-          "key",
-          "granted",
-          "includedIn",
-          "grantedByInclusion"
-        ]
-      },
-      "User": {
-        "type": "object",
-        "properties": {
-          "uuid": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          },
-          "playlists": {
-            "nullable": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Playlist"
-            }
-          },
-          "privileges": {
-            "nullable": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Privilege"
-            }
-          }
-        },
-        "required": [
-          "uuid",
-          "username",
-          "playlists",
-          "privileges"
-        ]
-      },
       "PlaylistVisibility": {
         "type": "string",
         "enum": [
@@ -8399,6 +8382,74 @@
           "filters"
         ]
       },
+      "PlaylistUserCreator": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "user"
+            ]
+          },
+          "userUuid": {
+            "type": "string"
+          },
+          "user": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "userUuid",
+          "user"
+        ]
+      },
+      "PlaylistBotCreator": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "bot"
+            ]
+          },
+          "pluginId": {
+            "type": "string"
+          },
+          "botId": {
+            "type": "string"
+          },
+          "botName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "type",
+          "pluginId",
+          "botId",
+          "botName"
+        ]
+      },
+      "PlaylistSystemCreator": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "system"
+            ]
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
       "PlaylistTrack": {
         "type": "object",
         "properties": {
@@ -8409,23 +8460,94 @@
             "format": "date-time",
             "type": "string"
           },
-          "addedBySystem": {
-            "type": "boolean"
-          },
           "addedBy": {
-            "nullable": true,
-            "allOf": [
+            "oneOf": [
               {
-                "$ref": "#/components/schemas/User"
+                "$ref": "#/components/schemas/PlaylistUserCreator"
+              },
+              {
+                "$ref": "#/components/schemas/PlaylistBotCreator"
+              },
+              {
+                "$ref": "#/components/schemas/PlaylistSystemCreator"
               }
-            ]
+            ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "user": "#/components/schemas/PlaylistUserCreator",
+                "bot": "#/components/schemas/PlaylistBotCreator",
+                "system": "#/components/schemas/PlaylistSystemCreator"
+              }
+            }
           }
         },
         "required": [
           "track",
           "dateAdded",
-          "addedBySystem",
           "addedBy"
+        ]
+      },
+      "Privilege": {
+        "type": "object",
+        "properties": {
+          "pluginId": {
+            "type": "string",
+            "nullable": true
+          },
+          "key": {
+            "type": "string"
+          },
+          "granted": {
+            "type": "boolean"
+          },
+          "includedIn": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "grantedByInclusion": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "pluginId",
+          "key",
+          "granted",
+          "includedIn",
+          "grantedByInclusion"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "playlists": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Playlist"
+            }
+          },
+          "privileges": {
+            "nullable": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Privilege"
+            }
+          }
+        },
+        "required": [
+          "uuid",
+          "username",
+          "playlists",
+          "privileges"
         ]
       },
       "PlaylistMemberRole": {
@@ -8474,17 +8596,26 @@
           "uuid": {
             "type": "string"
           },
-          "ownerUuid": {
-            "type": "string",
-            "nullable": true
-          },
           "owner": {
-            "nullable": true,
-            "allOf": [
+            "oneOf": [
               {
-                "$ref": "#/components/schemas/User"
+                "$ref": "#/components/schemas/PlaylistUserCreator"
+              },
+              {
+                "$ref": "#/components/schemas/PlaylistBotCreator"
+              },
+              {
+                "$ref": "#/components/schemas/PlaylistSystemCreator"
               }
-            ]
+            ],
+            "discriminator": {
+              "propertyName": "type",
+              "mapping": {
+                "user": "#/components/schemas/PlaylistUserCreator",
+                "bot": "#/components/schemas/PlaylistBotCreator",
+                "system": "#/components/schemas/PlaylistSystemCreator"
+              }
+            }
           },
           "dateCreated": {
             "format": "date-time",
@@ -8537,7 +8668,6 @@
         },
         "required": [
           "uuid",
-          "ownerUuid",
           "owner",
           "dateCreated",
           "dateModified",
