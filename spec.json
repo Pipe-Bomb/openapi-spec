@@ -9119,6 +9119,43 @@
           "album"
         ]
       },
+      "TaskHistoryResult": {
+        "type": "string",
+        "enum": [
+          "completed",
+          "failed"
+        ]
+      },
+      "TaskHistory": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskHistoryResult"
+              }
+            ]
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Duration in milliseconds"
+          },
+          "dateStarted": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "subTaskId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "result",
+          "duration",
+          "dateStarted",
+          "subTaskId"
+        ]
+      },
       "Task": {
         "type": "object",
         "properties": {
@@ -9155,6 +9192,14 @@
           },
           "resumable": {
             "type": "boolean"
+          },
+          "lastRun": {
+            "nullable": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TaskHistory"
+              }
+            ]
           }
         },
         "required": [
@@ -9164,7 +9209,8 @@
           "subTasks",
           "status",
           "percent",
-          "resumable"
+          "resumable",
+          "lastRun"
         ]
       },
       "AllTasksResponse": {
