@@ -9257,12 +9257,16 @@
           },
           "name": {
             "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
           }
         },
         "required": [
           "pluginId",
           "sourceId",
-          "name"
+          "name",
+          "enabled"
         ]
       },
       "OrderedAttributeSourceDto": {
